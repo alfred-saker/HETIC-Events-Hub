@@ -1,0 +1,331 @@
+@import url(mobile.css);
+/* @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');  */
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap');
+
+
+:root{
+  /* Sections Couleurs  */
+  --color-background:#ffff;
+  --color-first:#14AE5C;
+  --color-second:#030303;
+
+  /* Section Font size Dekstop */
+  --size-desktop-title1:35px;
+  --size-desktop-title2:30px;
+  --size-desktop-title3:20px;
+  --size-desktop-body:16px;
+  --size-desktop-small:13px;
+
+  /* Section Font size Mobile */
+  --size-mobile-title1:30px;
+  --size-mobile-title2:24px;
+  --size-mobile-title3:18px;
+  --size-mobile-body:14px; 
+  --size-mobile-small:12px; 
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  /* font-family: 'Mulish', sans-serif; */
+  background-color: var(--color-background);
+}
+.classWrapperIndex{
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 5em;
+}
+.classTextChoix{
+  margin-top: 2em;
+  color: var(--color-second);
+}
+.classBlockBtn{
+  display: flex;
+  justify-content: center;
+}
+.classBlockBtn a{
+  margin: 1em 0 0 1em;
+  padding: 1em;
+  width: 20%;
+  border: 1px solid var(--color-first);
+  background-color: var(--color-first);
+  color: var(--color-background);
+  border-radius: 5px;
+  text-decoration: none;
+}
+/* Footer  */
+footer{
+  height: 50vh;
+  background-color: var(--color-second);
+}
+.containerFooter{
+  display: flex;
+  align-items: center;
+}
+.containerFooter{
+  padding: 3em;
+}
+.classLogoFooter img{
+  width: 50%;
+}
+.classItemsFooter ul{
+  margin-top: 2em;
+}
+.classItemsFooter ul li {
+  margin-top: 1em;
+}
+.classItemsFooter ul li a{
+  text-decoration: none;
+  color: var(--color-background);
+}
+.classItemsFooter ul li a:hover{
+  text-decoration: underline;
+}
+.classCopyRightFooter{
+  text-align: center;
+  color: var(--color-background);
+  margin-bottom: 1em;
+}
+
+/* Page Inscription Association */
+.classLogoFormAsso{
+  padding: 1em;
+  text-align: center;
+}
+.classContainerFormAsso{
+  margin:auto;
+  width:50%;
+}
+.itemAssoform{
+  padding: 1em;
+  width: 100%;
+}
+label{
+  text-align: center;
+}
+input[type="text"],input[type="email"],input[type="password"],select{
+  display: block;
+  margin:1px 0 1px;
+  width: 100%;
+  padding: 1em;
+  border-radius: 5px;
+}
+textarea{
+  margin:1px 0 1px;
+  width: 100%;
+  border-radius: 5px;
+}
+.itempôAssoform{
+  padding: 1em;
+  width: 100%;
+  text-align: justify;
+  line-height: 20px;
+  font-size: var(--size-desktop-small);
+}
+.itembtnsubmitAssoform{
+  display: flex;
+  justify-content:flex-start;
+  padding: 1em;
+  width: 30%;
+}
+.itembtnsubmitAssoform button{
+  padding: 10px;
+  width: 100%;
+  border: 1px solid --color-first;
+  background-color: var(--color-first);
+  border-radius: 5px;
+  color: var(--color-background);
+  cursor: pointer;
+}
+.itembtnsubmitAssoform a{
+  padding: 10px;
+  width: 100%;
+  margin-left: 1em;
+  text-align: center;
+  border: 1px solid --color-first;
+  background-color: var(--color-first);
+  border-radius: 5px;
+  color: var(--color-background);
+  text-decoration: none;
+}
+.itembtnsubmitAssoform a:hover{
+  opacity: 0.8;
+}
+.itembtnsubmitAssoform button:hover{
+  opacity: 0.8;
+}
+.itemBtnradioAssoform{
+  padding: 1em;
+}
+input[type="checkbox"]{
+  padding: 1em;
+  display: inline;
+}
+.classTextWelcomeFormAsso{
+  margin: 1em auto 1em auto;
+  text-align: center;
+  font-size: var(--size-desktop-title3);
+  /* font-weight: 600; */
+  width: 100%;
+}
+.classLigneSeparationFormAsso{
+  color: var(--color-second);
+}
+.classHaveYouAccountFormAsso{
+  font-weight: 200;
+  line-height: 20px;
+  font-size: var(--size-desktop-small);
+}
+
+/* Page Inscription Etudiant */
+
+.classLogoFormEtu{
+  padding: 1em;
+  text-align: center;
+}
+.classContainerFormEtu{
+  margin:auto;
+  width:50%;
+}
+.itemEtuform{
+  padding: 1em;
+  width: 100%;
+}
+label{
+  text-align: center;
+}
+input[type="text"],input[type="email"],input[type="password"],select{
+  display: block;
+  margin:1px 0 1px;
+  width: 100%;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.itempôEtuform{
+  padding: 1em;
+  width: 100%;
+  text-align: justify;
+  line-height: 20px;
+  font-size: var(--size-desktop-small);
+}
+.itembtnsubmitEtuform{
+  display: flex;
+  justify-content:flex-start;
+  padding: 1em;
+  width: 30%;
+}
+.itembtnsubmitEtuform a{
+  padding: 10px;
+  width: 100%;
+  margin-left: 1em;
+  text-align: center;
+  border: 1px solid --color-first;
+  background-color: var(--color-first);
+  border-radius: 5px;
+  color: var(--color-background);
+  text-decoration: none;
+}
+.itembtnsubmitEtuform a:hover{
+  opacity: 0.8;
+}
+.itembtnsubmitEtuform button{
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid --color-first;
+  background-color: var(--color-first);
+  border-radius: 5px;
+  color: var(--color-background);
+}
+.itembtnsubmitEtuform button:hover{
+  opacity: 0.8;
+}
+.itemBtnradioEtuform{
+  padding: 1em;
+}
+input[type="checkbox"]{
+  padding: 1em;
+  display: inline;
+}
+.classTextWelcomeFormEtu{
+  margin: 1em auto 1em auto;
+  text-align: center;
+  font-size: var(--size-desktop-title3);
+  /* font-weight: 600; */
+  width: 100%;
+}
+.classLigneSeparationFormAEtu{
+  color: var(--color-second);
+}
+.classHaveYouAccountFormEtu{
+  font-weight: 200;
+  line-height: 20px;
+  font-size: var(--size-desktop-small);
+}
+
+
+/* Page Connexion */
+
+.classLogoFormConnexion{
+  padding: 1em;
+  text-align: center;
+}
+.classContainerFormConnexion{
+  margin:auto;
+  width:50%;
+}
+.itemConnexionform{
+  padding: 1em;
+  width: 100%;
+}
+label{
+  text-align: center;
+}
+input[type="email"],input[type="password"]{
+  display: block;
+  margin:1px 0 1px;
+  width: 100%;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.itembtnsubmitConnexionform{
+  display: flex;
+  justify-content:flex-start;
+  padding: 1em;
+  width: 30%;
+}
+
+.itembtnsubmitConnexionform button{
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid --color-first;
+  background-color: var(--color-first);
+  border-radius: 5px;
+  color: var(--color-background);
+}
+.itembtnsubmitConnexionform button:hover{
+  opacity: 0.8;
+}
+
+.classTextWelcomeFormConnexion{
+  margin: 1em auto 1em auto;
+  text-align: center;
+  font-size: var(--size-desktop-title3);
+  /* font-weight: 600; */
+  width: 100%;
+}
+.classLigneSeparationFormAConnexion{
+  color: var(--color-second);
+}
+.classHaveYouAccountFormConnexion{
+  font-weight: 200;
+  line-height: 20px;
+  font-size: var(--size-desktop-small);
+}

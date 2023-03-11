@@ -1,0 +1,16 @@
+:root{
+  /* Sections Couleurs  */
+  --color-background:#ffff;
+  --color-first:#14AE5C;
+  --color-second:#030303;
+
+  /* Section Font size Mobile */
+  --size-mobile-title1:30px;
+  --size-mobile-title2:24px;
+  --size-mobile-title3:18px;
+  --size-mobile-body:14px; 
+  --size-mobile-small:12px; 
+}
+
+/* Mobile Inscription Association */
+
