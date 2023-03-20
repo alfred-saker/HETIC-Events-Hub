@@ -1,16 +1,84 @@
-:root{
-  /* Sections Couleurs  */
-  --color-background:#ffff;
-  --color-first:#14AE5C;
-  --color-second:#030303;
 
-  /* Section Font size Mobile */
-  --size-mobile-title1:30px;
-  --size-mobile-title2:24px;
-  --size-mobile-title3:18px;
-  --size-mobile-body:14px; 
-  --size-mobile-small:12px; 
+@media screen and (max-width:600px)
+{
+
+  /* Mobile Index */
+  .classLogoIndex img{
+    width: 40%;
+  }
+
+  /* Mobile Inscription Association */
+  .classContainerFormAsso{
+    margin:auto;
+    width:50%;
+  }
+  .classLogoFormAsso img{
+    width:75%;
+  }
+  .itembtnsubmitAssoform button,a{
+    width: auto;
+  }
+
+  /* Mobile inscription etudiant */
+  .classLogoFormEtu img{
+    width:75%;
+  }
+  .itembtnsubmitEtuform button,a{
+    width: auto;
+  }
+
+  /* mobile connexion */
+  .classLogoFormConnexion{
+  text-align: center;
+    background-color: aqua;
+    width: 100%;
+  }
+  .classLogoFormConnexion img{
+    width:70%;
+  }
+  .itembtnsubmitConnexionform button{
+    width: 100%;
+  }
+  .classContainerFormConnexion{
+    background-color: blue;
+  }
+
+  .itemConnexionform{
+    background-color: crimson;
+    padding: 1em;
+    width: 50%;
+  }
+  input[type="email"],input[type="password"]{
+    display: block;
+    margin:1px 0 1px;
+    width: 100%;
+    padding: 1em;
+    border-radius: 5px;
+  }
+
+  /* Mobile Espace personnel Associations */
+  .classBlockAbonnement_asso{
+    display: block;
+  }
+
+  /* mobile Espace personnel Profil */
+  .classBtnUpdateInfosProfil{
+    margin-top: 1em;
+    width: 30%;
+  }
+  .BlockLamda .fielset2{
+    width:70%;
+  }
+  .itembtnsubmitUpdateform{
+    margin:0 auto;
+    width: auto;
+  }
+  .itembtnsubmitUpdateform button{
+  width: 200px;
+  }
 }
+  
 
-/* Mobile Inscription Association */
+
+
 

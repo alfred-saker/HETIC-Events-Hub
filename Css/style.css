@@ -1,7 +1,4 @@
-@import url(mobile.css);
-/* @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');  */
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap');
-
+@import url('mobile.css');
 
 :root{
   /* Sections Couleurs  */
@@ -30,14 +27,18 @@
 
 body {
   font-family: 'DM Sans', sans-serif;
-  /* font-family: 'Mulish', sans-serif; */
+  font-family: 'Mulish', sans-serif;
   background-color: var(--color-background);
 }
 .classWrapperIndex{
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   padding: 5em;
+}
+
+.classLogoIndex img{
+  width:20%;
 }
 .classTextChoix{
   margin-top: 2em;
@@ -50,7 +51,7 @@ body {
 .classBlockBtn a{
   margin: 1em 0 0 1em;
   padding: 1em;
-  width: 20%;
+  width: auto;
   border: 1px solid var(--color-first);
   background-color: var(--color-first);
   color: var(--color-background);
@@ -59,10 +60,10 @@ body {
 }
 /* Footer  */
 footer{
-  height: 50vh;
   background-color: var(--color-second);
 }
 .containerFooter{
+  margin-top: 3em;
   display: flex;
   align-items: center;
 }
@@ -94,7 +95,11 @@ footer{
 /* Page Inscription Association */
 .classLogoFormAsso{
   padding: 1em;
-  text-align: center;
+  width:30%;
+  margin:2em 0 0 2em;
+}
+.classLogoFormAsso img{
+  width:40%;
 }
 .classContainerFormAsso{
   margin:auto;
@@ -103,6 +108,12 @@ footer{
 .itemAssoform{
   padding: 1em;
   width: 100%;
+}
+.classTitleFormAsso{
+  font-size: var(--size-desktop-title1);
+  font-weight: 700;
+  text-align: center;
+  
 }
 label{
   text-align: center;
@@ -134,7 +145,7 @@ textarea{
 }
 .itembtnsubmitAssoform button{
   padding: 10px;
-  width: 100%;
+  width: auto;
   border: 1px solid --color-first;
   background-color: var(--color-first);
   border-radius: 5px;
@@ -143,7 +154,7 @@ textarea{
 }
 .itembtnsubmitAssoform a{
   padding: 10px;
-  width: 100%;
+  width: auto;
   margin-left: 1em;
   text-align: center;
   border: 1px solid --color-first;
@@ -169,7 +180,6 @@ input[type="checkbox"]{
   margin: 1em auto 1em auto;
   text-align: center;
   font-size: var(--size-desktop-title3);
-  /* font-weight: 600; */
   width: 100%;
 }
 .classLigneSeparationFormAsso{
@@ -185,7 +195,21 @@ input[type="checkbox"]{
 
 .classLogoFormEtu{
   padding: 1em;
+  width:30%;
+  margin:2em 0 0 2em;
+}
+.classLogoFormEtu img{
+  width:40%;
+}
+/* .classBlockTextEtu{
+  padding: 5px;
+  background-color: #14AE5C;
+} */
+.classTitleFormEtu{
+  font-size: var(--size-desktop-title1);
+  font-weight: 700;
   text-align: center;
+  text-transform: uppercase;
 }
 .classContainerFormEtu{
   margin:auto;
@@ -217,11 +241,11 @@ input[type="text"],input[type="email"],input[type="password"],select{
   display: flex;
   justify-content:flex-start;
   padding: 1em;
-  width: 30%;
+  width: 40%;
 }
 .itembtnsubmitEtuform a{
   padding: 10px;
-  width: 100%;
+  width: auto;
   margin-left: 1em;
   text-align: center;
   border: 1px solid --color-first;
@@ -235,7 +259,7 @@ input[type="text"],input[type="email"],input[type="password"],select{
 }
 .itembtnsubmitEtuform button{
   padding: 10px;
-  width: 100%;
+  width: auto;
   cursor: pointer;
   border: 1px solid --color-first;
   background-color: var(--color-first);
@@ -259,7 +283,7 @@ input[type="checkbox"]{
   /* font-weight: 600; */
   width: 100%;
 }
-.classLigneSeparationFormAEtu{
+.classLigneSeparationFormEtu{
   color: var(--color-second);
 }
 .classHaveYouAccountFormEtu{
@@ -273,10 +297,14 @@ input[type="checkbox"]{
 
 .classLogoFormConnexion{
   padding: 1em;
-  text-align: center;
+  width:30%;
+  margin:2em 0 0 2em;
+}
+.classLogoFormConnexion img{
+  width:40%;
 }
 .classContainerFormConnexion{
-  margin:auto;
+  margin:0 auto; 
   width:50%;
 }
 .itemConnexionform{
@@ -303,7 +331,7 @@ input[type="email"],input[type="password"]{
 
 .itembtnsubmitConnexionform button{
   padding: 10px;
-  width: 100%;
+  width: auto;
   cursor: pointer;
   border: 1px solid --color-first;
   background-color: var(--color-first);
@@ -318,14 +346,254 @@ input[type="email"],input[type="password"]{
   margin: 1em auto 1em auto;
   text-align: center;
   font-size: var(--size-desktop-title3);
-  /* font-weight: 600; */
   width: 100%;
-}
-.classLigneSeparationFormAConnexion{
-  color: var(--color-second);
 }
 .classHaveYouAccountFormConnexion{
   font-weight: 200;
   line-height: 20px;
   font-size: var(--size-desktop-small);
+  margin-left: 1em;
+}
+
+
+/* Page Espace personnel */
+.classContainerEspacePerso{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2em;
+}
+.classContainerEspacePerso a{
+  color: var(--color-second);
+  text-decoration: none;
+}
+.classContainerEspacePerso .classBlockProfil{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 1em 2em 0.5em;
+  width:350px;
+  height:300px;
+  border: 1px solid #14AE5C;
+  background-color: var(--color-background);
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+.classContainerEspacePerso .classBlockProfil:hover{
+  background-color:#14AE5C;
+  color: var(--color-background);
+}
+.classContainerEspacePerso img{
+  width: 80px;
+}
+.classTextprofil {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+/* Page Espace personnel/Mes Associations */
+
+.classContainerAbonnement_asso{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2em;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.classBlockAbonnement_asso{
+  display: flex;
+  align-items: center;
+  width:350px;
+  height: 300px;
+  margin: 0 2em 2em 0;
+  padding: 1em;
+  border-radius:10px ;
+  background-color: var(--color-background);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+.classBlockAbonnement_asso div a{
+  padding: 0.5em;
+  border: 1.5px solid #14AE5C;
+  width: auto;
+  color: var(--color-second);
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: var(--color-background);
+}
+.classBlockAbonnement_asso div a:hover{
+  color: #ffff;
+  background-color: var(--color-first);
+}
+.classBlockAbonnement_asso div p{
+  margin-top: 1em;
+}
+.classImageAbonnement_asso{
+  margin: 0 auto;
+ width: 50%;
+}
+.classImageAbonnement_asso img{
+ width: 100%;
+}
+/* Page Espace personnel/Mes Evenements */
+
+.classContainerEvenement{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2em;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.classBlockEvenement{
+  width:350px;
+  height: 400px;
+  margin: 0 2em 2em 0;
+  padding:2em;
+  border-radius:10px ;
+  background-color: var(--color-background);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+.classBlockEvenement div a{
+  padding: 0.5em;
+  width: auto;
+  color: var(--color-second);
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: var(--color-background);
+}
+.classBlockEvenement div p{
+  margin:1em 0 1em 0;
+}
+.classImageEvenement{
+ width: auto;
+}
+.classImageEvenement img{
+  text-align: center;
+ width: 60%;
+}
+
+/* Page Profil */
+.classContainerUpdateProfil{
+  padding: 1em;
+  background-color: #B3B3B3B3;
+}
+.classBlockInfosProfil{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #B3B3B3B3;
+  margin: 2em auto;
+  padding:1em 0 1em 1em;
+  max-width: 1200px;
+}
+.classBlockInfosProfil div{
+  margin-right:2em;
+}
+.classBlockInfosProfil div p{
+  margin-top:1em;
+}
+.classAvatarProfil{
+  width: 30%;
+}
+.classAvatarProfil img{
+  width: 100%;
+}
+.classBtnUpdateInfosProfil{
+  padding: 1em;
+  border: 1px solid #14AE5C;
+  border-radius: 5px;
+  width:120px;
+  cursor: pointer;
+}
+.classBtnUpdateInfosProfil:hover{
+  color: var(--color-background);
+  background-color: var(--color-first);
+}
+.classContainerUpdateProfil{
+  /* pointer-events: none; */
+  display: none;
+  width: 100%;
+}
+.classContainerUpdateProfil fieldset{
+  padding: 1em;
+}
+.BlockLamda{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  height: auto;
+}
+.BlockLamda .fielset1{
+  margin-bottom: 1em;
+  border: 2px solid rgb(12, 11, 11);
+  width:70%;
+}
+.BlockLamda .fielset2{
+  border: 2px solid rgb(12, 11, 11);
+  width:70%;
+}
+.BlockLamda img{
+  width: 20%;
+}
+#preview {
+  display: none;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 1rem;
+}
+
+.BlockLamda input[type="file"] {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.BlockLamda input[type="email"],input[type="text"],input[type="password"],textarea{
+  margin-bottom: 1rem;
+}
+input[type="file"]:focus {
+  outline: none;
+  border-color: #0077ff;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background-color: var(--color-background);
+  color: var(--color-second);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+input[type="file"]::-moz-file-upload-button {
+  background-color: var(--color-background);
+  color: var(--color-second);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.itembtnsubmitUpdateform{
+  margin:12px 0 0 13em;
+  width: auto;
+}
+.itembtnsubmitUpdateform button{
+  background-color: var(--color-background);
+  border: 1px solid #14AE5C;
+  padding: 1rem;
+  border-radius: 5px;
+  width:120px;
+  cursor: pointer;
+}
+.itembtnsubmitUpdateform button:hover{
+  color: var(--color-background);
+  background-color:  #14AE5C;
 }
