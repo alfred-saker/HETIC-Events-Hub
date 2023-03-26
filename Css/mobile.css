@@ -2,6 +2,60 @@
 @media screen and (max-width:600px)
 {
 
+  header {
+    position: relative;
+    justify-content: space-between;
+    width: 100vw;
+  }
+
+  header .burger {
+    display: block;
+  }
+
+  header .logo {
+    width: 30%;
+    margin: 0;
+  }
+
+  header nav {
+    width: auto;
+  }
+
+  .logout {
+    display: flex;
+    padding: 1em;
+
+  }
+
+  header nav a {
+    font-size: small;
+  }
+
+  header nav .links {
+    display: none;
+    background-color: #26E8A0;
+    position: absolute;
+    top: 120px;
+    left: 0px;
+    padding: 2em;
+    width: 100vw;
+  }
+  header nav .links li {
+    margin-right: 3em;
+    padding: 10px;
+    text-align: center;
+      
+  }
+  header nav .links li a{
+    font-size: large;
+  }
+  header img {
+    width: 40px;
+  }
+  .logout span {
+    display: none;
+  }
+
   /* Mobile Index */
   .classLogoIndex img{
     width: 40%;
@@ -66,8 +120,13 @@
     margin-top: 1em;
     width: 30%;
   }
+  .BlockLamda .fielset1{
+    background-color: red;
+    width:80%;
+  }
   .BlockLamda .fielset2{
-    width:70%;
+    background-color: red;
+    width:auto;
   }
   .itembtnsubmitUpdateform{
     margin:0 auto;
@@ -75,6 +134,18 @@
   }
   .itembtnsubmitUpdateform button{
   width: 200px;
+  }
+  .classBlockInfosProfil{
+    background-color: crimson;
+    width:10px;
+    height: 800px;
+  }
+  .classContainerDisplayProfil{
+    background-color: #EF5D36;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1em;
   }
 }
   

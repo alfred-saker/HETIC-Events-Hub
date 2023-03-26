@@ -1,5 +1,6 @@
 <?php
 include('../config.php');
+$path = "../index.php";
 
 if($_POST){
   
@@ -11,7 +12,7 @@ if($_POST){
   if(isset($_POST['Nmdp']) && empty($_POST['Nmdp'])){
     $errors_password['Nmdp'] = 'Veuillez saisir votre nouveau mot de passe';
   }
-  if(isset(($_POST['CNmdp'])) && empty($_POST['CNmdp'])){
+  if(isset($_POST['CNmdp']) && empty($_POST['CNmdp'])){
     $errors_password['CNmdp'] = 'Veuillez confirmer  votre mot de passe';
   }
   if((strlen($_POST['Nmdp']) && strlen($_POST['CNmdp'])<=8) && strlen(($_POST['Nmdp'])>0)){
@@ -20,14 +21,14 @@ if($_POST){
   if(($_POST['Nmdp'])!=($_POST['CNmdp'])){
     $errors_password['match_password'] = 'Les mots de passes ne correspondent pas';
   }
-
-  $req =$pdo->query("SELECT * FROM users WHERE email='$_POST[email]'");
+  $email = htmlspecialchars(trim($_POST['email']));
+  $req =$pdo->query("SELECT * FROM users WHERE email='$email'");
 
   if($req->rowCount()>=1){
     $password = password_hash($_POST['Nmdp'],PASSWORD_DEFAULT);
     $pdo->exec("UPDATE users SET mdp = '$password' WHERE email = '$_POST[email]'");
-    sleep(5);
-    header('Location:connexion.php');
+    echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Mot de passe renitialisé avec succès! Veuillez vous connecter !</div>';
+    header("Refresh: 3; url=../index.php");
   }
   else{
     $errors_password['check_account'] = "Cet email n'existe pas";

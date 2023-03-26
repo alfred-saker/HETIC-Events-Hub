@@ -1,22 +1,41 @@
+<?php
+include('config.php');
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Css/reset.css">
+  <link rel="stylesheet" href="Css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Css/style.css">
   <link rel="shortcut icon" href="img/logo.svg" type="image/x-icon">
   <title>HETIC - Events Hub Mon Espace personnel</title>
 </head>
+
 <body>
   <!-- header et menu -->
-
+  <header>
+    <img src="img/menu.png" alt="Menu burger" class="burger" id="menu_Burger">
+    <a class="logo" href="home.php"><img src="img/logo1.svg" alt="Logo"></a>
+    <nav>
+      <ul class="links" id="menuLink">
+        <li><a href="#">Evenements</a></li>
+        <li><a href="association_listing.php">Associations</a></li>
+        <li><a href="espace_perso.php">Espace personnel</a></li>
+      </ul>
+      <ul class="deconnexion">
+        <li><a href="?action=logout" class="logout">Deconnexion </a></li>
+      </ul>
+    </nav>
+  </header>
   <h3><a href="espace_perso.php">Mon espace personnel</a>/mes Associations</h3>
 
   <div class="classContainerAbonnement_asso">
@@ -80,9 +99,9 @@
         <p><a href="#">Se desabonner</a></p>
       </div>
     </div>
-    </div>
+  </div>
 
-    <footer>
+  <footer>
     <div class="containerFooter">
       <div class="classLogoFooter">
         <img src="img/logo.svg" alt="Logo Footer">
@@ -97,8 +116,10 @@
       </div>
     </div>
     <div class="classCopyRightFooter">
-      <p>Copyright &copy;<?= date('Y');?> HEH-Site de centralisation de données</p>
+      <p>Copyright &copy;<?= date('Y'); ?> HEH-Site de centralisation de données</p>
     </div>
   </footer>
-  </body>
+  <script src="Js/scripts.js"></script>
+</body>
+
 </html>

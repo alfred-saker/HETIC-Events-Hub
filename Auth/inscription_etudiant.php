@@ -4,6 +4,7 @@
 
   $type_user = "etudiant";
   $date = date('Y-m-d');
+  $path = "../index.php";
 
   if(isset($_SESSION['user'])){
     header('location:../espace_personnel.php');
@@ -14,22 +15,22 @@
     $error = array();
     $success = array();
 
-    if(isset(($_POST['nom'])) && empty($_POST['nom'])){
+    if(isset($_POST['nom'])&& empty($_POST['nom'])){
       $error['nom'] = 'Veuillez renseignez votre nom!!';
     }
-    if(isset(($_POST['prenom'])) && empty($_POST['prenom'])){
+    if(isset($_POST['prenom']) && empty($_POST['prenom'])){
       $error['prenom'] = 'Veuillez renseignez votre prenom!!';
     }
-    if(isset(($_POST['email'])) && empty($_POST['email'])){
+    if(isset($_POST['email']) && empty($_POST['email'])){
       $error['email'] = 'Veuillez renseignez votre email!!';
     }
-    if(isset(($_POST['promo'])) && empty($_POST['promo'])){
+    if(isset($_POST['promo']) && empty($_POST['promo'])){
       $error['promo'] = 'Veuillez renseignez votre promotion!!';
     }
-    if(isset(($_POST['mdp'])) && empty($_POST['mdp'])){
+    if(isset($_POST['mdp'])&& empty($_POST['mdp'])){
       $error['mdp'] = 'Veuillez renseignez votre mot de passe!!';
     }
-    if(isset(($_POST['cmdp'])) && empty($_POST['cmdp'])){
+    if(isset($_POST['cmdp']) && empty($_POST['cmdp'])){
       $error['cmdp'] = 'Veuillez confirmer votre mot de passe!!';
     }
 
@@ -54,19 +55,18 @@
       $error_account = "Ce compte existe deja!!";
     }
 
-    $nom =addslashes ($_POST['nom']);
-    $prenom =addslashes ($_POST['prenom']);
-    $promo = addslashes($_POST['promo']);
-    $email = addslashes($_POST['email']);
+    $email = htmlspecialchars(trim($_POST['email']));
+    $nom = htmlspecialchars(trim($_POST['nom']));
+    $prenom = htmlspecialchars(trim($_POST['prenom']));
+    $promo = htmlspecialchars(trim($_POST['promo']));
     $mdp = password_hash($_POST['mdp'],PASSWORD_DEFAULT);
 
     if(empty($error)){
       $pdo->exec("INSERT INTO users (nom, prenom, email,promotion,date_creation,type,mdp) VALUES ('$nom','$prenom','$email','$promo','$date','$type_user','$mdp')");
       $success['account']= "Votre inscription a été bien prise en compte! Veuillez vous connecter";
-      sleep(5);
-      header('Location:../Auth/connexion.php?');
+      echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Votre inscription a été bien prise en compte! Veuillez vous connecter !</div>';
+      header("Refresh: 3; url=../index.php");
     }
-
   }
 ?>
 

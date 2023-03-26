@@ -4,7 +4,8 @@
 
 
   $type_user = "association";
-  $date = date('Y-m-d');
+  $date = date('Y-m-d:H:i:s');
+  $path = "../index.php";
 
   if(isset($_SESSION['user'])){
     header('location:../espace_perso.php');
@@ -15,20 +16,20 @@
     $error = array();
     $success = array();
 
-    if(isset(($_POST['nom_asso'])) && empty($_POST['nom_asso'])){
+    if(isset($_POST['nom_asso']) && empty($_POST['nom_asso'])){
       $error['nom'] = "Veuillez renseignez le nom de l'association!!";
     }
     if(isset($_POST['description_asso']) && empty($_POST['description_asso'])){
       $error['desc'] = "Veuillez renseignez la description!!";
     }
-    if(isset(($_POST['mdp_asso'])) && empty($_POST['mdp_asso'])){
+    if(isset($_POST['mdp_asso']) && empty($_POST['mdp_asso'])){
       $error['mdp'] = 'Veuillez renseignez le mot de passe!!';
     }
-    if(isset(($_POST['cmdp_asso'])) && empty($_POST['cmdp_asso'])){
+    if(isset($_POST['cmdp_asso']) && empty($_POST['cmdp_asso'])){
       $error['cmdp'] = 'Veuillez confirmer le mot de passe!!';
     }
     
-    if(isset(($_POST['email_asso'])) && empty($_POST['email_asso'])){
+    if(isset($_POST['email_asso']) && empty($_POST['email_asso'])){
       $error['email'] = "Veuillez renseignez l'email!!";
       if(!filter_var($_POST['email_asso'], FILTER_VALIDATE_EMAIL)){
         $error['email'] = "Cette adresse mail n'est pas valide";
@@ -49,16 +50,17 @@
       $error_account = "Ce compte existe deja!!";
     }
 
-    $nom =addslashes ($_POST['nom_asso']);
-    $email = addslashes($_POST['email_asso']);
-    $desc = $_POST['description_asso'];
+    $nom = htmlspecialchars(trim($_POST['nom_asso']));
+    $email = htmlspecialchars(trim($_POST['email_asso']));
+    $desc = htmlspecialchars(trim($_POST['description_asso']));
     $mdp = password_hash($_POST['mdp_asso'],PASSWORD_DEFAULT);
 
     if(empty($error)){
       $pdo->exec("INSERT INTO users (nom, email,description,date_creation,type,mdp) VALUES ('$nom','$email','$desc','$date','$type_user','$mdp')");
-      $success['account']= "Votre inscription a été bien prise en compte! Veuillez vous connecter";
-      sleep(5);
-      header('Location:../Auth/connexion.php?');
+      // sleep(5);
+      // echo '<script>alert("Votre inscription a été bien prise en compte! Veuillez vous connecter"); window.location.href = "../index.php";</script>';
+      echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Votre inscription a été bien prise en compte! Veuillez vous connecter !</div>';
+      header("Refresh: 3; url=../index.php");
     }
   }
 ?>
@@ -140,7 +142,7 @@
         <button type="submit">S'inscrire</button>
         <a href="../index.php">Retour</a>
       </div>
-      <p>Déjà un compte ? <a href="connexion.php">Connectez-vous</a> </p>
+      <p>Déjà un compte ? <a href="../index.php">Connectez-vous</a> </p>
     </form>
     <?php }else{?>
       <form action="" method="post">
@@ -176,7 +178,7 @@
         <button type="submit">S'inscrire</button>
         <a href="../index.php">Retour</a>
       </div>
-      <p>Déjà un compte ? <a href="connexion.php">Connectez-vous</a> </p>
+      <p>Déjà un compte ? <a href="../index.php">Connectez-vous</a> </p>
     </form>
     <?php }?>
     <hr class="classLigneSeparationFormAsso">

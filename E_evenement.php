@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,59 +15,73 @@
   <link rel="shortcut icon" href="img/logo.svg" type="image/x-icon">
   <title>HETIC - Events Hub Mon Espace personnel</title>
 </head>
+
 <body>
   <!-- header et menu -->
+  <header>
+    <img src="img/menu.png" alt="Menu burger" class="burger" id="menu_Burger">
+    <a class="logo" href="home.php"><img src="img/logo1.svg" alt="Logo"></a>
+    <nav>
+      <ul class="links" id="menuLink">
+        <li><a href="#">Evenements</a></li>
+        <li><a href="association_listing.php">Associations</a></li>
+        <li><a href="espace_perso.php">Espace personnel</a></li>
+      </ul>
+      <ul class="deconnexion">
+        <li><a href="?action=logout" class="logout">Deconnexion </a></li>
+      </ul>
+    </nav>
+  </header>
+  <h3><a href="espace_perso.php">Mon espace personnel</a>/mes Associations</h3>
 
-    <h3><a href="espace_perso.php">Mon espace personnel</a>/mes Associations</h3>
-
-    <div class="classContainerEvenement">
-      <div class="classBlockEvenement">
-        <div class="classImageEvenement">
-          <img src="img/association.png" alt="Image Association">
-        </div>
-        <div>
-          <p>Nom de l'Evenement:</p>
-          <p>Periode:</p>
-          <p>Lieu:</p>
-          <p><a href="#" style="background-color:brown;">Terminer</a></p>
-        </div>
+  <div class="classContainerEvenement">
+    <div class="classBlockEvenement">
+      <div class="classImageEvenement">
+        <img src="img/association.png" alt="Image Association">
       </div>
-      <div class="classBlockEvenement">
-        <div class="classImageEvenement">
-          <img src="img/association.png" alt="Image Association">
-        </div>
-        <div>
-          <p>Nom de l'Evenement:</p>
-          <p>Periode:</p>
-          <p>Lieu:</p>
-          <p><a href="#" style="background-color:#B3B3B3;">Pas commencé</a></p>
-        </div>
-      </div>
-      <div class="classBlockEvenement">
-        <div class="classImageEvenement">
-          <img src="img/association.png" alt="Image Association">
-        </div>
-        <div>
-          <p>Nom de l'Evenement:</p>
-          <p>Periode:</p>
-          <p>Lieu:</p>
-          <p><a href="#" style="background-color:#14AE5C;">En cours</a></p>
-        </div>
-      </div>
-      <div class="classBlockEvenement">
-        <div class="classImageEvenement">
-          <img src="img/association.png" alt="Image Association">
-        </div>
-        <div>
-          <p>Nom de l'Evenement:</p>
-          <p>Periode:</p>
-          <p>Lieu:</p>
-          <p><a href="#" style="background-color:brown;">Terminer</a></p>
-        </div>
+      <div>
+        <p>Nom de l'Evenement:</p>
+        <p>Periode:</p>
+        <p>Lieu:</p>
+        <p><a href="#" style="background-color:brown;">Terminer</a></p>
       </div>
     </div>
+    <div class="classBlockEvenement">
+      <div class="classImageEvenement">
+        <img src="img/association.png" alt="Image Association">
+      </div>
+      <div>
+        <p>Nom de l'Evenement:</p>
+        <p>Periode:</p>
+        <p>Lieu:</p>
+        <p><a href="#" style="background-color:#B3B3B3;">Pas commencé</a></p>
+      </div>
+    </div>
+    <div class="classBlockEvenement">
+      <div class="classImageEvenement">
+        <img src="img/association.png" alt="Image Association">
+      </div>
+      <div>
+        <p>Nom de l'Evenement:</p>
+        <p>Periode:</p>
+        <p>Lieu:</p>
+        <p><a href="#" style="background-color:#14AE5C;">En cours</a></p>
+      </div>
+    </div>
+    <div class="classBlockEvenement">
+      <div class="classImageEvenement">
+        <img src="img/association.png" alt="Image Association">
+      </div>
+      <div>
+        <p>Nom de l'Evenement:</p>
+        <p>Periode:</p>
+        <p>Lieu:</p>
+        <p><a href="#" style="background-color:brown;">Terminer</a></p>
+      </div>
+    </div>
+  </div>
 
-    <footer>
+  <footer>
     <div class="containerFooter">
       <div class="classLogoFooter">
         <img src="img/logo.svg" alt="Logo Footer">
@@ -81,8 +96,10 @@
       </div>
     </div>
     <div class="classCopyRightFooter">
-      <p>Copyright &copy;<?= date('Y');?> HEH-Site de centralisation de données</p>
+      <p>Copyright &copy;<?= date('Y'); ?> HEH-Site de centralisation de données</p>
     </div>
   </footer>
-  </body>
+  <script src="Js/scripts.js"></script>
+</body>
+
 </html>

@@ -8,12 +8,11 @@ $pdo = new PDO(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')
   );
 
-
   session_start();
 
   if (isset($_GET['action']) && ($_GET['action'] == 'logout')) {
     session_destroy();
-    header('location:Auth/connexion.php');
+    header('location:index.php');
   }
 
 ?>

@@ -1,34 +1,28 @@
 <?php
-include('config.php');
-
-// if(isset($_SESSION['user'])){
-//   header('location:home.php');
-// }
+include('config.php')
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Css/reset.css">
+  <link rel="stylesheet" href="Css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Css/style.css">
   <link rel="shortcut icon" href="img/logo.svg" type="image/x-icon">
-  <title>HETIC - Events Hub Mon Espace personnel</title>
+  <title>HETIC - Events Hub Asscoiations</title>
 </head>
-
 <body>
-  <!-- header et menu -->
   <header>
-    <img src="img/menu.png" alt="Menu burger" class="burger" id="menu_Burger">
-    <a class="logo" href=""><img src="img/logo1.svg" alt="Logo"></a>
+    <img src="images/menu.png" alt="Menu burger" class="burger" id="menu_Burger">
+    <a class="logo" href="index.php"><img src="img/logo1.svg" alt="Logo"></a>
     <nav>
       <ul class="links" id="menuLink">
         <li><a href="#">Evenements</a></li>
@@ -40,38 +34,35 @@ include('config.php');
       </ul>
     </nav>
   </header>
-  <h2 class="classTitleWelcome">Bienvenu dans votre Espace personnel, <?php echo $_SESSION['user']['nom']; ?></h2>
-  <div class="classContainerEspacePerso">
-    <a href="profil.php">
-      <div class="classBlockProfil">
-        <img src="img/avatar-user.svg" alt="Avatar user">
-        <p class="classTextprofil">Mon Profil</p>
-      </div>
-    </a>
-    <a href="E_evenement.php">
-      <div class="classBlockProfil">
-        <img src="img/event-calendar.svg" alt="Avatar user">
-        <p class="classTextprofil">Mes Evenements</p>
-      </div>
-    </a>
-    <a href="Abonnement_asso.php">
-      <div class="classBlockProfil">
-        <img src="img/check-subscribe.svg" alt="Avatar user">
-        <p class="classTextprofil">Mes Associations</p>
-      </div>
-    </a>
-    <a href="#">
-      <div class="classBlockProfil">
-        <img src="img/chat.svg" alt="Avatar user">
-        <p class="classTextprofil">Ma Messagerie</p>
-      </div>
-    </a>
+  <div class="titre">
+    <h1 class="titre-asso">Associations</h1>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere eligendi nihil quam molestiae, porro eius rem quaerat eos vitae necessitatibus sequi ratione, soluta quae temporibus, magni nisi laudantium culpa architecto!</p>
   </div>
+  <div class="containerListAsso">
+    <?php 
+    $req = $pdo->query("SELECT * FROM users WHERE type = 'association'");
+    while ($data = $req->fetch()) { ?>
+    <div class="itemListAsso">
+      <div class="itemBlockImgAsso">
+        <?php if(isset($data['profil'])){?>
+        <?php echo '<img src="img/folder_profil_user/'.$data['profil'].'" alt="Icon">';?>
+        <?php }else{?>
+        <img src="img/association.png" alt="Icon">
+        <?php }?>
 
+      </div>
+      <h2><?php echo $data['nom'];?></h2>
+      <p><?php echo $data['description'];?></p>
+      <div class="Sub">
+        <button>S'abonner</button>
+      </div>
+    </div>
+    <?php }?>
+  </div>
   <footer>
     <div class="containerFooter">
       <div class="classLogoFooter">
-        <img src="img/logo.svg" alt="Logo Footer">
+        <a href="../index.php"><img src="img/HEH HETIC EVENTS HUB.png" alt="Logo"></a>
       </div>
       <div class="classItemsFooter">
         <ul>
@@ -86,7 +77,7 @@ include('config.php');
       <p>Copyright &copy;<?= date('Y'); ?> HEH-Site de centralisation de données</p>
     </div>
   </footer>
-  <script src="Js/scripts.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
