@@ -169,7 +169,7 @@ if (isset($_POST['connexion'])) {
         </p>
       </div>
       <button class="classBtnUpdateInfosProfil" id="btn_display">Modifier</button>
-      <button class="classBtnUpdateInfosProfil" id="btn_display">Modifier</button>
+      <button class="classBtnUpdateInfosProfil" id="btn_hidden">Annuler</button>
     </div>
     <section class="classContainerUpdateProfil" id="UpdateProfil">
       <div class="BlockLamda">
@@ -196,7 +196,7 @@ if (isset($_POST['connexion'])) {
                 <?php endif; ?>
               <?php endif; ?>
               <div class="itembtnsubmitUpdateform">
-                <input type="file" id="image" accept="image/*" name="photo">
+                <input type="file" id="image_profil" accept="image/*" name="photo">
                 <button type="submit">Mettre à jour</button>
               </div>
             </div>

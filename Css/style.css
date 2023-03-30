@@ -1,4 +1,4 @@
-@import url('mobile.css');
+/* @import url('mobile.css'); */
 
 :root{
   /* Sections Couleurs  */
@@ -32,95 +32,50 @@ body {
 }
 
 header {
-  display: flex;
-  align-items: center;
-  background-color: #26E8A0;
-  padding: 2em;
+	display: flex;
+	align-items: center;
+	background-color: #14AE5C;
+	padding: 2em;
 }
-
-header .logo {
-  width: 10%;
-  margin-left: 4em;
+header .logo{
+	width:10%;
+	margin-left: 4em;
 }
-
 header .logo img {
-  width: 100%;
+	width: 100%;
 }
-
-header nav {
+header nav{
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
 }
-
-header nav ul {
-  display: flex;
-  justify-content: space-around;
+header nav ul{
+	display:flex;
+	justify-content: space-around;
 }
-
 header nav a {
-  text-decoration: none;
-  color: #fff;
-  white-space: nowrap;
-  font-size: larger;
+	text-decoration: none;
+	color: #fff;
+	white-space: nowrap;
+	font-size: larger;
 }
-header nav .links a:hover {
-  text-decoration:underline;
+header nav .links li{
+	margin-right: 3em;
 }
-
-header nav .links li {
-  margin-right: 3em;
+header img{
+	width: 30px;
 }
-
-header img {
-  width: 30px;
-}
-
-header .burger {
-  display: none;
-  cursor: pointer;
+header .burger{
+	display: none;
 }
 
 .logout {
-  display: flex;
-  align-items: center;
-  padding: 0.8em;
-  background-color: #EF5D36;
-  border-radius: 5px;
-}
-.logout:hover {
- opacity: 0.8;
-}
-
-.classWrapperIndex{
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  padding: 5em;
-}
-
-.classLogoIndex img{
-  width:10%;
-}
-.classTextChoix{
-  margin-top: 3em;
-  color: var(--color-second);
-}
-.classBlockBtn{
-  display: flex;
-  justify-content: center;
-  margin-top: 2em;
-}
-.classBlockBtn a{
-  margin: 1em 0 0 1em;
-  padding: 1em;
-  width: auto;
-  border: 1px solid var(--color-first);
-  background-color: var(--color-first);
-  color: var(--color-background);
-  border-radius: 5px;
-  text-decoration: none;
+	display: flex;
+	align-items: center;
+	padding: 0.8em;
+	background-color:#EF5D36;
+	border-radius: 5px;
 }
 
 /* Listing Associations */
@@ -132,61 +87,69 @@ header .burger {
   padding: 1rem;
 }
 .containerListAsso {
-  /* background-color: bisque;  */
   padding: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content:center;
   max-width: 1300px;
-
 }
 
 .itemListAsso {
-  position: relative;
-  width: 350px;
+  display: flex;
+  
+  flex-wrap: wrap;
+  /* align-items: center; */
+  max-width:80%;
+  width: 70%;
   height: auto;
   margin: 1em auto 1em auto;
   padding:1em;
   border-radius: 10px;
-  box-shadow: 2px 2px 5px rgb(178, 178, 178);
-
 }
-.itemBlockImgAsso {
+.titre p{
   text-align: center;
-  width: 100%;
 }
-
-.itemBlockImgAsso img {
+.ItemBlockTextAsso{
+  display: flex;
+  flex-direction: column;
+  margin-left: 5em;
   width:50%;
 }
-.itemListAsso p {
+.itemBlockImgAsso {
+  border: 1px solid black;
+  padding: 1em;
+  text-align: center;
+  width:40%;
+}
+.itemBlockImgAsso img {
+  width:60%;
+}
+.ItemBlockTextAsso p {
+  width: 100%;
   text-align: justify;
+  line-height: 25px;
 }
 .itemListAsso h2 {
   text-align: center;
   font-size: 24px;
   font-style: bold;
   padding: 1rem;
+  text-transform: uppercase;
 }
-.Sub{
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  margin: 1em;
-}
-.Sub button {
-  padding: 5px;
-  background-color: #F47147;
-  border: 1px solid #F47147;
+
+.sub  {
+  padding:0.7em;
+  background-color: #EF5D36;
+  border: 1px solid #EF5D36;
+  text-decoration: none;
   cursor: pointer;
   border-radius: 3px;
   width: auto;
-  margin:1rem 0 0 250px;
-  box-shadow: 1px 1px 5px #F47147;
+  color: #fff ;
+  text-align: justify;
+  align-self: flex-end;
+  /* position: absolute; */
+  /* right: 0; */
 }
 
 .titre {
-  box-shadow: 2px 2px 5px rgb(178, 178, 178);
   margin: 3em auto 10px;
   width: 70%;
   padding: 10px 0px 25px 0px;
@@ -616,7 +579,6 @@ input[type="email"],input[type="password"]{
   display: flex;
   justify-content: center;
   padding: 1em;
-  /* background-color: #EF5D36; */
 }
 .classTitleWelcome{
   font-size: 25px;
@@ -631,7 +593,6 @@ input[type="email"],input[type="password"]{
 .classBlockInfosProfil{
   box-shadow: 2px 2px 5px rgb(178, 178, 178);
   margin-top: 2em;
-  /* background-color: #0077ff; */
   padding:1em;
   width:40%;
   height:500px;
@@ -664,7 +625,7 @@ input[type="email"],input[type="password"]{
   background-color: var(--color-first);
 }
 .classContainerUpdateProfil{
-  display: none;
+  display: block;
   width: 100%;
 }
 .classContainerUpdateProfil fieldset{
@@ -760,7 +721,6 @@ input[type="file"]::-moz-file-upload-button {
 }
 .gallery{
   width:100%;
-  /* border: 1px solid black;  */
 } 
 .group{
   width: 90%; 
@@ -774,7 +734,6 @@ input[type="file"]::-moz-file-upload-button {
 }
 .item{
   width: 300px;
-  /* border: 1px solid black;  */
   height: 300px;
   margin: 20px;
   box-shadow: 1px 1px 1px 3px rgb(178, 178, 178);
@@ -889,3 +848,188 @@ justify-content: space-between;
 .phrase p{
   margin-left: 45px;
 }
+
+
+
+
+
+@media screen and (max-width:600px)
+{
+  header{
+		position: relative;
+		justify-content: space-between;
+		width:100%;
+	}
+	header .burger{
+		display: block !important;
+    cursor: pointer;
+	}
+	header .logo {
+		width:30%;
+		margin: 0;
+	}
+	header nav {
+		width: auto;
+	}
+	.logout {
+		display: flex;
+		padding: 0.5em;
+	}
+	header nav a {
+		font-size:18px;
+    line-height: 25px;
+	}
+	header nav .links{
+		display: block;
+		background-color: #14AE5C;
+		position: absolute;
+		top:110px;
+		left: 0px;
+		padding: 2em;
+		width:100%;
+	}
+
+	.logout span {
+		display: none;
+	}
+
+  /* Mobile Index */
+  .classLogoIndex img{
+    width: 40%;
+  }
+
+  /* Mobile Inscription Association */
+  .classContainerFormAsso{
+    margin:auto;
+    width:50%;
+  }
+  .classLogoFormAsso img{
+    width:75%;
+  }
+  .itembtnsubmitAssoform button,a{
+    width: auto;
+  }
+
+  /* Mobile inscription etudiant */
+  .classLogoFormEtu img{
+    width:75%;
+  }
+  .itembtnsubmitEtuform button,a{
+    width: auto;
+  }
+
+  /* mobile connexion */
+  .classLogoFormConnexion{
+  text-align: center;
+    background-color: aqua;
+    width: 100%;
+  }
+  .classLogoFormConnexion img{
+    width:70%;
+  }
+  .itembtnsubmitConnexionform button{
+    width: 100%;
+  }
+  .classContainerFormConnexion{
+    background-color: blue;
+  }
+
+  .itemConnexionform{
+    background-color: crimson;
+    padding: 1em;
+    width: 50%;
+  }
+  input[type="email"],input[type="password"]{
+    display: block;
+    margin:1px 0 1px;
+    width: 100%;
+    padding: 1em;
+    border-radius: 5px;
+  }
+
+  /* Mobile Espace personnel Associations */
+  .classBlockAbonnement_asso{
+    display: block;
+  }
+
+  /* mobile Espace personnel Profil */
+  .classBtnUpdateInfosProfil{
+    margin-top: 1em;
+    width: 30%;
+  }
+  .BlockLamda .fielset1{
+    background-color: red;
+    width:80%;
+  }
+  .BlockLamda .fielset2{
+    background-color: red;
+    width:100%;
+  }
+  .itembtnsubmitUpdateform{
+    margin:0 auto;
+    width: auto;
+  }
+  .itembtnsubmitUpdateform button{
+    width: auto;
+    margin: 1em auto;
+  }
+  .classBlockInfosProfil{
+    margin-top:3em;
+    /* padding: 3em; */
+    width:92%;
+    height: auto;
+  }
+  .classContainerDisplayProfil{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1em;
+  }
+
+  /* Listing Association */
+  .itemBlockImgAsso {
+    margin: 0 auto;
+    width:100%;
+  }
+  .itemBlockImgAsso img {
+    width:50%;
+  }
+  .ItemBlockTextAsso h2 {
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+    font-style: bold;
+    padding: 1rem;
+    text-transform: uppercase;
+  }
+  .ItemBlockTextAsso{
+    margin: 0 auto;
+    width: 100%;
+  }
+  .ItemBlockTextAsso p {
+    text-align: justify;
+    width:auto;
+    font-size: 16px;
+  }
+  .sub {
+    text-align: center;
+    margin: 1em auto;
+    width: auto;
+    font-size: 16px;
+  }
+  .titre-asso{
+    margin:1.5em auto;
+  }
+  .titre p{
+    margin: 0 ;
+  }
+  .titre {
+    margin: 3em auto 10px;
+    width: 100%;
+  }
+}
+  
+
+
+
+

@@ -1,12 +1,18 @@
 <?php
-include('config.php')
-?>
+include('config.php');
 
+if(isset($_GET['action']) && ($_GET['action'] == 'is_abonne')){
+  // $id = $data['id_users'];
+  var_dump($_SESSION['user']['nom']);
+  echo 'hello xord';
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Css/reset.css">
@@ -17,26 +23,27 @@ include('config.php')
   <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="img/logo.svg" type="image/x-icon">
-  <title>HETIC - Events Hub Asscoiations</title>
+  <title>HETIC - Events Hub Associations</title>
 </head>
+
 <body>
   <header>
-    <img src="images/menu.png" alt="Menu burger" class="burger" id="menu_Burger">
-    <a class="logo" href="index.php"><img src="img/logo1.svg" alt="Logo"></a>
+    <img src="img/menu.png" alt="Menu burger" class="burger" id="menu_Burger">
+    <a class="logo" href=""><img src="img/logo1.svg" alt=""></a>
     <nav>
       <ul class="links" id="menuLink">
         <li><a href="#">Evenements</a></li>
-        <li><a href="association_listing.php">Associations</a></li>
+        <li><a href="#">Associations</a></li>
         <li><a href="espace_perso.php">Espace personnel</a></li>
       </ul>
       <ul class="deconnexion">
-        <li><a href="?action=logout" class="logout">Deconnexion </a></li>
+        <li><a href="#" class="logout">Deconnexion </a></li>
       </ul>
     </nav>
   </header>
   <div class="titre">
     <h1 class="titre-asso">Associations</h1>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere eligendi nihil quam molestiae, porro eius rem quaerat eos vitae necessitatibus sequi ratione, soluta quae temporibus, magni nisi laudantium culpa architecto!</p>
+    <p>Toutes nos association d'HETIC!</p>
   </div>
   <div class="containerListAsso">
     <?php 
@@ -49,12 +56,11 @@ include('config.php')
         <?php }else{?>
         <img src="img/association.png" alt="Icon">
         <?php }?>
-
       </div>
-      <h2><?php echo $data['nom'];?></h2>
-      <p><?php echo $data['description'];?></p>
-      <div class="Sub">
-        <button>S'abonner</button>
+      <div class="ItemBlockTextAsso">
+        <h2><?php echo $data['nom'];?></h2>
+        <p><?php echo $data['description'];?></p>
+        <a href="?is_abonner=true" class="sub" id="suscribe">S'abonner</a>
       </div>
     </div>
     <?php }?>
@@ -77,7 +83,7 @@ include('config.php')
       <p>Copyright &copy;<?= date('Y'); ?> HEH-Site de centralisation de données</p>
     </div>
   </footer>
-  <script src="script.js"></script>
+  <script src="Js/scripts.js"></script>
 </body>
 
 </html>
