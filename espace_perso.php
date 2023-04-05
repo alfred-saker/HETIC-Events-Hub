@@ -1,9 +1,8 @@
 <?php
 include('config.php');
-
-// if(isset($_SESSION['user'])){
-//   header('location:home.php');
-// }
+if(!isset($_SESSION['user'])){
+  header('location:index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,10 +27,10 @@ include('config.php');
   <!-- header et menu -->
   <header>
     <img src="img/menu.png" alt="Menu burger" class="burger" id="menu_Burger">
-    <a class="logo" href=""><img src="img/logo1.svg" alt="Logo"></a>
+    <a class="logo" href="home.php"><img src="img/logo1.svg" alt="Logo"></a>
     <nav>
       <ul class="links" id="menuLink">
-        <li><a href="#">Evenements</a></li>
+        <li><a href="">Evenements</a></li>
         <li><a href="association_listing.php">Associations</a></li>
         <li><a href="espace_perso.php">Espace personnel</a></li>
       </ul>
@@ -40,8 +39,30 @@ include('config.php');
       </ul>
     </nav>
   </header>
-  <h2 class="classTitleWelcome">Bienvenu dans votre Espace personnel, <?php echo $_SESSION['user']['nom']; ?></h2>
+  <h2 class="classTitleWelcome">Bienvenu dans votre Espace personnel, <?php echo $_SESSION['user']['prenom'];?>&nbsp;<?php echo $_SESSION['user']['nom'];?></h2>
+  <?php
+    $sql = $pdo->prepare("SELECT * FROM users WHERE id_users =:id_user AND type='association'");
+    $sql->execute(array(
+      ':id_user' => $_SESSION['user']['id_users']
+    )); 
+    if ($sql->rowCount() > 0){
+  ?>
   <div class="classContainerEspacePerso">
+    <a href="profil.php">
+      <div class="classBlockProfil">
+        <img src="img/avatar-user.svg" alt="Avatar user">
+        <p class="classTextprofil">Mon Profil</p>
+      </div>
+    </a>
+    <a href="E_evenement.php">
+      <div class="classBlockProfil">
+        <img src="img/event-calendar.svg" alt="Avatar user">
+        <p class="classTextprofil">Mes Evenements</p>
+      </div>
+    </a>
+  </div>
+  <?php }else{?>
+    <div class="classContainerEspacePerso">
     <a href="profil.php">
       <div class="classBlockProfil">
         <img src="img/avatar-user.svg" alt="Avatar user">
@@ -67,6 +88,7 @@ include('config.php');
       </div>
     </a>
   </div>
+  <?php } ?>
 
   <footer>
     <div class="containerFooter">

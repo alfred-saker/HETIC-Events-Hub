@@ -168,8 +168,6 @@ if (isset($_POST['connexion'])) {
           Date Dernière modification: <?php echo $_SESSION['user']['date_update']; ?>
         </p>
       </div>
-      <button class="classBtnUpdateInfosProfil" id="btn_display">Modifier</button>
-      <button class="classBtnUpdateInfosProfil" id="btn_hidden">Annuler</button>
     </div>
     <section class="classContainerUpdateProfil" id="UpdateProfil">
       <div class="BlockLamda">
@@ -196,7 +194,7 @@ if (isset($_POST['connexion'])) {
                 <?php endif; ?>
               <?php endif; ?>
               <div class="itembtnsubmitUpdateform">
-                <input type="file" id="image_profil" accept="image/*" name="photo">
+                <input type="file" id="image" accept="image/*" name="photo">
                 <button type="submit">Mettre à jour</button>
               </div>
             </div>
@@ -208,7 +206,7 @@ if (isset($_POST['connexion'])) {
 
             <div class="itemUpdateform">
               <label for="nom">Nom</label>
-              <input type="text" name="nom" id="nom" autocomplete=off placeholder="Saisissez votre nom">
+              <input type="text" name="nom" id="nom_user_update" autocomplete=off placeholder="Saisissez votre nom">
               <?php if (isset($errors_update['nom'])) : ?>
                 <p style="color:red;"><?php echo $errors_update['nom']; ?></p>
               <?php endif; ?>
@@ -216,30 +214,30 @@ if (isset($_POST['connexion'])) {
             <?php if (!empty($_SESSION['user']['prenom'])) { ?>
               <div class="itemUpdateform">
                 <label for="prenom">Prenom</label>
-                <input type="text" name="prenom" id="prenom" placeholder="Saisissez votre nom" autocomplete=off>
+                <input type="text" name="prenom" id="prenom_user_update" placeholder="Saisissez votre nom" autocomplete=off>
               </div>
             <?php } else { ?>
               <div class="itemUpdateform" style="display:none;">
                 <label for="prenom">Prenom</label>
-                <input type="text" name="prenom" id="prenom" placeholder="Saisissez votre prenom" autocomplete=off>
+                <input type="text" name="prenom" id="prenom_user_update" placeholder="Saisissez votre prenom" autocomplete=off>
               </div>
             <?php } ?>
             <?php if ($_SESSION['user']['type_account'] == 'etudiant') { ?>
               <div class="itemUpdateform" style="display:none;">
                 <label for="desc">Description</label>
-                <textarea name="desc" id="description" placeholder="Saisissez votre description......" cols="30" rows="10"></textarea>
+                <textarea name="desc" id="description_update" placeholder="Saisissez votre description......" cols="30" rows="10"></textarea>
               </div>
             <?php } else { ?>
               <div class="itemUpdateform">
                 <label for="desc">Description</label>
-                <textarea name="desc" id="description" placeholder="Saisissez votre description......" cols="30" rows="10"></textarea>
+                <textarea name="desc" id="description_update" placeholder="Saisissez votre description......" cols="30" rows="10"></textarea>
                 <?php if (isset($errors_update['desc'])) : ?>
                   <p style="color:red;"><?php echo $errors_update['desc']; ?></p>
                 <?php endif; ?>
               </div>
             <?php } ?>
             <div class="itembtnsubmitUpdateform">
-              <button type="submit" name="info_perso">Mettre à jour</button>
+              <button type="submit" name="info_perso" id="update2" disabled="true">Mettre à jour</button>
             </div>
           </form>
         </fieldset>
@@ -255,20 +253,20 @@ if (isset($_POST['connexion'])) {
               <?php endif; ?>
               <div class="itemUpdateform">
                 <label for="nom">Email</label>
-                <input type="email" name="email" id="email" autocomplete=off placeholder="Saisissez votre email" value="<?php echo htmlspecialchars($_POST['email']) ?>">
+                <input type="email" name="email" id="email_update" autocomplete=off placeholder="Saisissez votre email" value="<?php echo htmlspecialchars($_POST['email']) ?>">
                 <?php if (isset($errors_update_connexion['email'])) : ?>
                   <p style="color:red;"><?php echo $errors_update_connexion['email']; ?></p>
                 <?php endif; ?>
               </div>
               <div class="itemUpdateform">
                 <label for="mdp">Mot de passe</label>
-                <input type="password" name="mdp" id="mdp" autocomplete=off placeholder="Saisissez votre mot de passe">
+                <input type="password" name="mdp" id="mdp_update" autocomplete=off placeholder="Saisissez votre mot de passe">
                 <?php if (isset($errors_update_connexion['mdp'])) : ?>
                   <p style="color:red;"><?php echo $errors_update_connexion['mdp']; ?></p>
                 <?php endif; ?>
               </div>
               <div class="itembtnsubmitUpdateform">
-                <button type="submit" name="connexion">Mettre à jour</button>
+                <button type="submit" name="connexion" id="update3" disabled="true">Mettre à jour</button>
               </div>
             </form>
           </fieldset>
@@ -278,14 +276,14 @@ if (isset($_POST['connexion'])) {
               <legend>Mes Identifiants</legend> <br>
               <div class="itemUpdateform">
                 <label for="nom">Email</label>
-                <input type="email" name="email" id="email" autocomplete=off placeholder="Saisissez votre email">
+                <input type="email" name="email" id="email_update" autocomplete=off placeholder="Saisissez votre email">
               </div>
               <div class="itemUpdateform">
                 <label for="mdp">Mot de passe</label>
-                <input type="password" name="mdp" id="mdp" autocomplete=off placeholder="Saisissez votre mot de passe">
+                <input type="password" name="mdp" id="mdp_update" autocomplete=off placeholder="Saisissez votre mot de passe">
               </div>
               <div class="itembtnsubmitUpdateform">
-                <button type="submit" name="connexion">Mettre à jour</button>
+                <button type="submit" name="connexion" id="update3" disabled="true">Mettre à jour</button>
               </div>
             </form>
           </fieldset>

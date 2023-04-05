@@ -14,6 +14,4 @@ $pdo = new PDO(
     session_destroy();
     header('location:index.php');
   }
- 
-
 ?>

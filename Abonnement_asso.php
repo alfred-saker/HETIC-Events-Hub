@@ -1,5 +1,20 @@
 <?php
 include('config.php');
+if(!isset($_SESSION['user'])){
+  header('location:index.php');
+}
+if($_POST){
+
+  $data_id = array(
+    'id_asso'=>$_POST['id_association'],
+    'id_etu'=>$_SESSION['user']['id_users']
+  );
+  $reqt = $pdo->exec("UPDATE abonnement SET abonnement.status = '0' WHERE abonnement.id_asso = '$data_id[id_asso]' AND abonnement.id_etudiant = '$data_id[id_etu]'");
+  echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Désabonnement reussie!</div>';
+  header("Location: " . $_SERVER['PHP_SELF']);
+  exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -36,69 +51,50 @@ include('config.php');
       </ul>
     </nav>
   </header>
-  <h3><a href="espace_perso.php">Mon espace personnel</a>/mes Associations</h3>
 
   <div class="classContainerAbonnement_asso">
-    <div class="classBlockAbonnement_asso">
-      <div class="classImageAbonnement_asso">
-        <img src="img/association.png" alt="Image Association">
+    <?php 
+       $requete = $pdo->prepare("
+       SELECT users.nom,users.profil, users.id_users, abonnement.id_asso, abonnement.id_etudiant , abonnement.date_abonnement,abonnement.status
+       FROM abonnement 
+       INNER JOIN users ON abonnement.id_asso = users.id_users 
+       WHERE abonnement.id_etudiant = :id_etudiant AND abonnement.status = '1'
+     ");
+     $requete->execute(array(
+       ':id_etudiant' => $_SESSION['user']['id_users']
+     ));
+     if ($requete->rowCount() > 0){
+      $results = $requete->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($results as $result) {
+    ?>
+     <div class="itemListAsso">
+      <div class="itemBlockImgAsso">
+        <?php if(isset($result['profil'])){?>
+        <?php echo '<img src="img/folder_profil_user/'.$result['profil'].'" alt="Icon">';?>
+        <?php }else{?>
+        <img src="img/association.png" alt="Icon">
+        <?php }?>
       </div>
-      <div>
-        <p>Nom de l'Association:</p>
-        <p>Date Abonnement:</p>
-        <p><a href="#">Se desabonner</a></p>
-      </div>
-    </div>
-    <div class="classBlockAbonnement_asso">
-      <div class="classImageAbonnement_asso">
-        <img src="img/association.png" alt="Image Association">
-      </div>
-      <div>
-        <p>Nom de l'Association:</p>
-        <p>Date Abonnement:</p>
-        <p><a href="#">Se desabonner</a></p>
-      </div>
-    </div>
-    <div class="classBlockAbonnement_asso">
-      <div class="classImageAbonnement_asso">
-        <img src="img/association.png" alt="Image Association">
-      </div>
-      <div>
-        <p>Nom de l'Association:</p>
-        <p>Date Abonnement:</p>
-        <p><a href="#">Se desabonner</a></p>
-      </div>
-    </div>
-    <div class="classBlockAbonnement_asso">
-      <div class="classImageAbonnement_asso">
-        <img src="img/association.png" alt="Image Association">
-      </div>
-      <div>
-        <p>Nom de l'Association:</p>
-        <p>Date Abonnement:</p>
-        <p><a href="#">Se desabonner</a></p>
+      <div class="ItemBlockTextAsso">
+        <h2><?php echo $result['nom'];?></h2>
+        <p>
+          Vous êtes bonné(e) à <?php echo $result['nom'];?> depuis le <?php echo $result['date_abonnement'];?>
+        </p>
+        <form action="" method="post" class="form-abonnement">
+          <input type="hidden" value="<?php echo $result['id_asso'];?>" name="id_association">
+          <input type="hidden" value="<?php echo $result['id_etudiant'];?>" name="id_etudiant">
+          <?php if($_SESSION['user']['type'] == 'etudiant'){?>
+            <button class="sub" type="submit">Se desabonner</button>
+          <?php }else{?>
+            <button class="sub" style="display:none;" type="submit">S'abonner</button>
+          <?php }?>
+        </form>
       </div>
     </div>
-    <div class="classBlockAbonnement_asso">
-      <div class="classImageAbonnement_asso">
-        <img src="img/association.png" alt="Image Association">
-      </div>
-      <div>
-        <p>Nom de l'Association:</p>
-        <p>Date Abonnement:</p>
-        <p><a href="#">Se desabonner</a></p>
-      </div>
-    </div>
-    <div class="classBlockAbonnement_asso">
-      <div class="classImageAbonnement_asso">
-        <img src="img/association.png" alt="Image Association">
-      </div>
-      <div>
-        <p>Nom de l'Association:</p>
-        <p>Date Abonnement:</p>
-        <p><a href="#">Se desabonner</a></p>
-      </div>
-    </div>
+    <?php }?>
+    <?php }else{?>
+      <h3 class="blockMsgAsso" style="color:black;">Vous n'êtes abonné(e) à aucune association pour le moment 😥 Retrouvez toutes nos associations <a href="association_listing.php"><strong> ici</strong></a> </h3>
+    <?php }?>
   </div>
 
   <footer>

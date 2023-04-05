@@ -1,8 +1,12 @@
 <?php
 include('config.php');
+if (!isset($_SESSION['user'])) {
+  header('location:index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,74 +31,18 @@ include('config.php');
         <li><a href="association_listing.php">Associations</a></li>
         <li><a href="espace_perso.php">Espace personnel</a></li>
       </ul>
-      <ul class="deconnexion"> 
-          <li><a href="?action=logout"class="logout">Deconnexion </a></li>
-      </ul> 
+      <ul class="deconnexion">
+        <li><a href="?action=logout" class="logout">Deconnexion </a></li>
+      </ul>
     </nav>
   </header>
   <div class="WrapperHome">
-    
-    <!-- <div class="slider">
-      <div class="slides">
-        <input type="radio" name="radion-btn" id="radio1">
-        <input type="radio" name="radion-btn" id="radio2">
-        <input type="radio" name="radion-btn" id="radio3">
-        <input type="radio" name="radion-btn" id="radio4">
-      </div>
-      <div class="slide first">
-        <img src="img/1.jpg" alt="">
-      </div>
-      <div class="slide">
-        <img src="img/2.jpg" alt="">
-      </div>
-      <div class="slide">
-        <img src="img/association.png" alt="">
-      </div>
-      <div class="slide">
-        <img src="img/4.jpg" alt="">
-      </div>
-      <div class="navigation-auto">
-        <div class="auto-btn1"></div>
-        <div class="auto-btn2"></div>
-        <div class="auto-btn3"></div>
-        <div class="auto-btn4"></div>
-      </div>
-    </div>
-    <div class="navigation-manual">
-      <label for="radio1" class="manual-btn"></label>
-      <label for="radio2" class="manual-btn"></label>
-      <label for="radio3" class="manual-btn"></label>
-      <label for="radio4" class="manual-btn"></label>
-    </div> -->
   </div>
   <div class="tittle">
     <h1>Quelques associations</h1>
   </div>
   <div class="gallery">
     <div class="div1">
-      <!-- <div class="association">
-        <div class="item">
-          <img src="img/Events.svg" alt="">
-          <div class="texte">
-            <h1>titre 6</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="img/Events.svg" alt="">
-          <div class="texte">
-            <h1>titre 6</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="img/Events.svg" alt="">
-          <div class="texte">
-            <h1>titre 6</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-      </div> -->
       <div class="association">
         <div class="item">
           <img src="img/Events.svg" alt="">
@@ -129,53 +77,25 @@ include('config.php');
     </div>
     <div class="foto">
       <div class="divi">
-        <!-- <div class="box">
-          <div class="item1">
-            <img src="img/events2.png" alt="">
-            <div class="texte">
-              <h1>titre 6</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-            </div>
-          </div>
-          <div class="item1">
-            <img src="img/events2.png" alt="">
-            <div class="texte">
-              <h1>titre 6</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-            </div>
-          </div>
-          <div class="item1">
-            <img src="img/events2.png" alt="">
-            <div class="texte">
-              <h1>titre 6</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-            </div>
-          </div>
-        </div> -->
+        <?php   
+          $sql = $pdo->prepare("SELECT * FROM users WHERE type = 'association'");
+          $sql->execute();
+          if($sql->rowCount()>0){
+            $list = $sql->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($list as $listing) {
+        ?>
         <div class="box">
           <div class="item1">
             <img src="img/events2.png" alt="">
             <div class="texte">
-              <h1>titre 5</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-            </div>
-          </div>
-          <div class="item1">
-            <img src="img/events2.png" alt="">
-            <div class="texte">
-              <h1>titre 6</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-            </div>
-          </div>
-          <div class="item1">
-            <img src="img/events2.png" alt="">
-            <div class="texte">
-              <h1>titre 6</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+              <h1><?php echo $listing['nom'];?></h1>
+              <p><?php echo $listing['description'];?></p>
             </div>
           </div>
         </div>
       </div>
+      <?php }?>
+      <?php }?>
     </div>
     <div class="btn">
       <a href="#">En savoir plus</a>
@@ -230,4 +150,5 @@ include('config.php');
   </footer>
   <script src="Js/scripts.js"></script>
 </body>
+
 </html>

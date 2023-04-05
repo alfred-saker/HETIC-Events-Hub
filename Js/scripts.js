@@ -1,31 +1,22 @@
-const imageInput = document.getElementById('image_profil');
-const imagePreview = document.getElementById('preview');
+const imageInput = document.querySelector('#image');
+const imagePreview = document.querySelector('#preview');
 
-imageInput.addEventListener('change', function() {
-  const file = this.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.addEventListener('load', function() {
-      imagePreview.setAttribute('src', this.result);
-      imagePreview.style.display = 'block';
-    });
-    reader.readAsDataURL(file);
-  }
-});
+if(imageInput) {
+  imageInput.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.addEventListener('load', function() {
+          imagePreview.setAttribute('src', this.result);
+          imagePreview.style.display = 'block';
+        });
+        reader.readAsDataURL(file);
+      }
+      });
+}
 
-let btn1 = document.getElementById('btn_display');
-let btn2 = document.getElementById('btn_hidden');
-let section = document.getElementById('UpdateProfil');
-
-btn1.addEventListener('click', () => {
-  section.style.display = 'block'; // Affichage de la section
-});
-btn2.addEventListener('click', () => {
-  section.style.display = 'none'; // Masquage de la section
-});
-
-let menu_Burger = document.getElementById("menu_Burger");
-let menuLink = document.getElementById("menuLink");
+let menu_Burger = document.querySelector("#menu_Burger");
+let menuLink = document.querySelector("#menuLink");
 
 menu_Burger.addEventListener('click', () => {
   if(menuLink.style.display === "block") { 
@@ -36,6 +27,52 @@ menu_Burger.addEventListener('click', () => {
   } 
 })
 
-let abonner = document.getElementById("suscribe");
-console.log(abonner);
-let value = abonner.href;
+let name_user = document.querySelector("#nom_user_update");
+let prenom_user = document.querySelector("#prenom_user_update");
+let descrip = document.querySelector("#description_update")
+let btn_update1 = document.querySelector("#update2");
+
+name_user.addEventListener('input', check_value1);
+prenom_user.addEventListener('input', check_value1);
+descrip.addEventListener('input', check_value1);
+
+let email = document.querySelector("#email_update");
+let mdp = document.querySelector("#mdp_update");
+let btn_update2 = document.querySelector("#update3");
+
+email.addEventListener('input', check_value2);
+mdp.addEventListener('input', check_value2);
+
+function check_value1(){
+  if ((name_user.value.length >0 && prenom_user.value.length >0 )|| descrip.value.length >0 ) {
+    btn_update1.disabled = false;
+    console.log(btn_update1.disabled);
+  }
+  else{
+    btn_update1.disabled = true;
+  }
+}
+
+function check_value2(){
+  if (email.value.length >0 && mdp.value.length >0) {
+    btn_update2.disabled = false;
+  }
+  else{
+    btn_update2.disabled = true;
+  }
+}
+
+const popup = document.querySelector('.popup');
+const closeBtn = document.querySelector('.close');
+
+closeBtn.addEventListener('click', () => {
+  popup.style.display = 'none';
+});
+
+setTimeout(() => {
+  popup.style.display = 'block';
+}, 3000);
+
+
+
+

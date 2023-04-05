@@ -144,5 +144,6 @@ if($_POST){
       <p>Copyright &copy;<?= date('Y');?> HEH-Site de centralisation de données</p>
     </div>
   </footer>
+  <script src="Js/scripts.js"></script>
 </body>
 </html>

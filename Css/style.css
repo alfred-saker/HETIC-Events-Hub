@@ -144,9 +144,10 @@ header .burger{
   width: auto;
   color: #fff ;
   text-align: justify;
+  
+}
+.form-abonnement{
   align-self: flex-end;
-  /* position: absolute; */
-  /* right: 0; */
 }
 
 .titre {
@@ -159,10 +160,17 @@ header .burger{
   margin: 0 auto;
   width: 60%;
 }
+.blockMsgAsso{
+  background-color: #ffffff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  padding: 5em;
+
+}
 
 /* Footer  */
 footer{
   background-color: var(--color-second);
+  height: 57vh;
 }
 .containerFooter{
   margin-top: 3em;
@@ -513,16 +521,17 @@ input[type="email"],input[type="password"]{
   background-color: var(--color-background);
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
-.classBlockAbonnement_asso div a{
+.classBlockAbonnement_asso div button{
   padding: 0.5em;
   border: 1.5px solid #14AE5C;
+  cursor: pointer;
   width: auto;
   color: var(--color-second);
   text-decoration: none;
   border-radius: 5px;
   background-color: var(--color-background);
 }
-.classBlockAbonnement_asso div a:hover{
+.classBlockAbonnement_asso div button:hover{
   color: #ffff;
   background-color: var(--color-first);
 }
@@ -849,12 +858,77 @@ justify-content: space-between;
   margin-left: 45px;
 }
 
+.succes-message{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* '_____________________________________________________________________________________________________________________ */
 @media screen and (max-width:600px)
 {
+  footer{
+    height: 70vh;
+  }
   header{
 		position: relative;
 		justify-content: space-between;
@@ -935,7 +1009,6 @@ justify-content: space-between;
   }
 
   .itemConnexionform{
-    background-color: crimson;
     padding: 1em;
     width: 50%;
   }
@@ -958,11 +1031,9 @@ justify-content: space-between;
     width: 30%;
   }
   .BlockLamda .fielset1{
-    background-color: red;
     width:80%;
   }
   .BlockLamda .fielset2{
-    background-color: red;
     width:100%;
   }
   .itembtnsubmitUpdateform{
@@ -974,8 +1045,7 @@ justify-content: space-between;
     margin: 1em auto;
   }
   .classBlockInfosProfil{
-    margin-top:3em;
-    /* padding: 3em; */
+    margin-top:10em;
     width:92%;
     height: auto;
   }
@@ -1017,6 +1087,9 @@ justify-content: space-between;
     width: auto;
     font-size: 16px;
   }
+  .form-abonnement{
+    margin: 1em auto
+  }
   .titre-asso{
     margin:1.5em auto;
   }
@@ -1029,6 +1102,7 @@ justify-content: space-between;
   }
 }
   
+
 
 
 
