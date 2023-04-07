@@ -81,7 +81,7 @@ if(!isset($_SESSION['user'])){
         <p class="classTextprofil">Mes Associations</p>
       </div>
     </a>
-    <a href="#">
+    <a href="chat.php">
       <div class="classBlockProfil">
         <img src="img/chat.svg" alt="Avatar user">
         <p class="classTextprofil">Ma Messagerie</p>
