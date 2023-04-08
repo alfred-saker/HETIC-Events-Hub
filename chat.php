@@ -292,7 +292,11 @@ if($_POST){
               ?>
                   <div class="invitation">
                     <p><?php echo $rows_pm['prenom']; ?></p>
-                    <a href="">Envoyer une invitation</a>
+                    <form action="" method="post">
+                      <input type="hidden" name="id_user_destinataire" value="<?php echo $rows_pmm['id_users'];?>">
+                      <input type="hidden" name="id_user_emetteur" value="<?php echo $_SESSION['user']['id_users'];?>">
+                      <button type="submit">Envoyer une invitation</button>
+                    </form>
                   </div>
                 <?php } ?>
               <?php } else { ?>
@@ -376,7 +380,11 @@ if($_POST){
               ?>
                   <div class="invitation">
                     <p><?php echo $rows_3d['prenom']; ?></p>
-                    <a href="">Envoyer une invitation</a>
+                    <form action="" method="post">
+                      <input type="hidden" name="id_user_destinataire" value="<?php echo $row_3d['id_users'];?>">
+                      <input type="hidden" name="id_user_emetteur" value="<?php echo $_SESSION['user']['id_users'];?>">
+                      <button type="submit">Envoyer une invitation</button>
+                    </form>
                   </div>
                 <?php } ?>
               <?php } else { ?>

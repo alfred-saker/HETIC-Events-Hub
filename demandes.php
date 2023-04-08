@@ -22,7 +22,6 @@ if(isset($_POST['echec'])){
   ));
   echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Mot de passe renitialisé avec succès! Veuillez vous connecter !</div>';
     header("Location" . $_SERVER['PHP_SELF']);
-  // echo 'Vous êtes maintenant amis';
 }
 
 ?>
@@ -53,7 +52,7 @@ if(isset($_POST['echec'])){
     <a class="logo" href="home.php"><img src="img/logo1.svg" alt="Logo"></a>
     <nav>
       <ul class="links" id="menuLink">
-        <li><a href="#">Evenements</a></li>
+        <li><a href="Evenements.php">Evenements</a></li>
         <li><a href="association_listing.php">Associations</a></li>
         <li><a href="espace_perso.php">Espace personnel</a></li>
       </ul>
@@ -62,14 +61,13 @@ if(isset($_POST['echec'])){
       </ul>
     </nav>
   </header>
-
   <div class="containerdemande">
     <?php
       $req_ask = $pdo->prepare("SELECT users.id_users, invitation.id_user_destinataire, users.promotion,users.nom,users.prenom,users.profil,invitation.id_user_destinataire,invitation.statut_invitation 
       FROM invitation, users 
-      WHERE invitation.id_user_destinataire=users.id_users AND invitation.id_user_emetteur=:id_emetteur AND invitation.statut_invitation=:statut");
+      WHERE invitation.id_user_emetteur=users.id_users AND invitation.id_user_destinataire=:id_dest AND invitation.statut_invitation=:statut");
       $req_ask->execute(array(
-        ':id_emetteur'=>$_SESSION['user']['id_users'],
+        ':id_dest'=>$_SESSION['user']['id_users'],
         ':statut'=>'En attente'
       ));
       if ($req_ask->rowCount()>0) {
@@ -79,7 +77,11 @@ if(isset($_POST['echec'])){
     <!-- <h3>Vous avez de nouvelles demandes d'ami</h3> -->
     <div class="row_demande">
       <div class="image_row">
-        <img src="img/user_avatar.png" alt="Profil invitation">
+        <?php if(isset($row_ligne['profil'])){?>
+        <img src="img/folder_profil_user/.'<?php echo $row_ligne['profil'];?>'" alt="Profil invitation">
+        <?php }else{?>
+          <img src="img/user_avatar.png" alt="Profil invitation">
+        <?php }?>
       </div>
       <div class="info_row">
         <h3><?php echo $rows_ligne['prenom'];?>&nbsp;<?php echo $rows_ligne['nom'];?></h3>
@@ -94,8 +96,7 @@ if(isset($_POST['echec'])){
     </div>
     <?php }?>
     <?php }else{?>
-    <h3 class="blockMsgAsso" style="color:black;">Vous n'avez aucune invitation d'ami pour le moment 😑<a
-        href="association_listing.php"><strong> ici</strong></a> </h3>
+    <h3 class="blockMsgAsso" style="color:black;margin:3em auto;border-radius:10px;">Vous n'avez aucune invitation d'ami pour le moment 😑</h3>
     <?php }?>
   </div>
 
