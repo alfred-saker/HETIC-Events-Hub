@@ -35,6 +35,7 @@ if($_POST){
       $_SESSION['user']['date_creation'] = $user_find['date_creation'];
       $_SESSION['user']['date_update'] = $user_find['date_update'];
       $_SESSION['user']['type_account'] = $user_find['type'];
+      $_SESSION['user']['promotion'] = $user_find['promotion'];
       header('location:'.$path);
     }
     else{

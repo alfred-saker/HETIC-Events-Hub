@@ -43,10 +43,7 @@ email.addEventListener("input", check_value2);
 mdp.addEventListener("input", check_value2);
 
 function check_value1() {
-  if (
-    (name_user.value.length > 0 && prenom_user.value.length > 0) ||
-    descrip.value.length > 0
-  ) {
+  if ((name_user.value.length > 0 && prenom_user.value.length > 0) || descrip.value.length > 0) {
     btn_update1.disabled = false;
     console.log(btn_update1.disabled);
   } else {
@@ -69,4 +66,6 @@ var previewPicture = function (e) {
     image.src = URL.createObjectURL(picture);
   }
 };
+
+
 

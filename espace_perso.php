@@ -81,6 +81,12 @@ if(!isset($_SESSION['user'])){
         <p class="classTextprofil">Mes Associations</p>
       </div>
     </a>
+    <a href="demandes.php">
+      <div class="classBlockProfil">
+        <img src="img/group.png" alt="Avatar user">
+        <p class="classTextprofil">Mes demandes </p>
+      </div>
+    </a>
     <a href="chat.php">
       <div class="classBlockProfil">
         <img src="img/chat.svg" alt="Avatar user">

@@ -1,3 +1,24 @@
+<?php
+include('config.php');
+
+
+if($_POST){
+  $msg_send = "";
+  $id_user_dest = $_POST['id_user_destinataire'];
+  $id_user_emet = $_POST['id_user_emetteur'];
+  $req_sql = $pdo->prepare("INSERT INTO invitation (id_user_emetteur,id_user_destinataire,statut_invitation) VALUES (:id_user_emetteur,:id_user_destinataire,:statut)");
+  $req_sql->execute(array(
+    ':id_user_emetteur'=>$id_user_emet,
+    ':id_user_destinataire'=>$id_user_dest,
+    ':statut'=>'En attente'
+  ));
+  $msg_send .="Votre invitation à bien été envoyé!"; 
+  header("Location: " . $_SERVER['PHP_SELF']);
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +27,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Css/reset.css">
-  <link rel="stylesheet" href="Css/style.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+  <link rel="stylesheet" href="Css/chat.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="img/logo.svg" type="image/x-icon">
+  <title>HETIC - EVent Hub Chat messagerie</title>
 </head>
 
 <body>
@@ -18,7 +44,7 @@
       <nav class="menu-chat">
         <ul class="items-chat">
           <li class="item">
-            <i class="fa fa-home" style="color: black;" aria-hidden="true"></i>
+            <a href="espace_perso.php"><i class="fa fa-home" style="color: black;" aria-hidden="true"></i></a>
           </li>
           <li class="item">
             <i class="fa fa-user" style="color: black;" aria-hidden="true" id="list-etudiant"></i>
@@ -153,19 +179,41 @@
       </section>
       <section class="friend-list" id="section-friend-list" style="display:none;">
         <h1>Liste des etudiants par promotions</h1>
+        <?php if(isset($msg_send)):?>
+          <p><?php echo $msg_send;?></p>
+        <?php endif;?>
         <div class="groupe">
 
           <div class="pmd">
             <div class="title_item" id="btn-title1">
-              <h2>PMD</h2>
+              <h2 style="text-transform:uppercase;"><?php echo $_SESSION['user']['promotion']; ?></h2>
               <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="champ" style="display:none" id="section_PMD">
-              <?php ?>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
+              <?php
+              $req = $pdo->prepare("SELECT * FROM users WHERE promotion = :promotion_user_connect AND id_users!=:id_user_connect");
+              $req->execute(array(
+                ':promotion_user_connect' => $_SESSION['user']['promotion'],
+                'id_user_connect' => $_SESSION['user']['id_users']
+              ));
+              if ($req->rowCount() > 0) {
+                $results = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $row) {
+              ?>
+                  <div class="invitation">
+                    <p>
+                      <?php echo $row['prenom']; ?>
+                    </p>
+                    <a href="">Ajouter comme ami(e)</a>
+                  </div>
+                <?php } ?>
+              <?php } else { ?>
+                <div class="invitation">
+                  <p>
+                    Aucune personne pour le moment!
+                  </p>
+                </div>
+              <?php } ?>
             </div>
           </div>
 
@@ -175,22 +223,25 @@
               <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="champ" style="display:none" id="section_CTO">
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Envoyer une invitation</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
+              <?php
+              $req = $pdo->prepare("SELECT * FROM users WHERE promotion = 'CTO'");
+              $req->execute();
+              if ($req->rowCount() > 0) {
+                $results = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $rows_CTO) {
+              ?>
+                  <div class="invitation">
+                    <p><?php echo $rows_CTO['prenom']; ?></p>
+                    <a href="">Envoyer une invitation</a>
+                  </div>
+                <?php } ?>
+              <?php } else { ?>
+                <div class="invitation">
+                  <p>
+                    Aucune personne pour le moment!
+                  </p>
+                </div>
+              <?php } ?>
             </div>
           </div>
 
@@ -200,22 +251,29 @@
               <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="champ" style="display:none" id="section_MD">
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Envoyer une invitation</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
+              <?php
+              $req = $pdo->prepare("SELECT * FROM users WHERE promotion ='DATA'");
+              $req->execute();
+              if ($req->rowCount() > 0) {
+                $results = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $row_data_master) {
+              ?>
+                  <div class="invitation">
+                    <p><?php echo $row_data_master['prenom']; ?><?php echo $row_data_master['id_users'];?>.</p>
+                    <form action="" method="post">
+                      <input type="hidden" name="id_user_destinataire" value="<?php echo $row_data_master['id_users'];?>">
+                      <input type="hidden" name="id_user_emetteur" value="<?php echo $_SESSION['user']['id_users'];?>">
+                      <button type="submit">Envoyer une invitation</button>
+                    </form>
+                  </div>
+                <?php } ?>
+              <?php } else { ?>
+                <div class="invitation">
+                  <p>
+                    Aucune personne pour le moment!
+                  </p>
+                </div>
+              <?php } ?>
             </div>
           </div>
 
@@ -225,22 +283,25 @@
               <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="champ" style="display:none" id="section_PM">
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Envoyer une invitation</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
+              <?php
+              $req = $pdo->prepare("SELECT * FROM users WHERE promotion = 'PRODUCT MANAGER'");
+              $req->execute();
+              if ($req->rowCount() > 0) {
+                $results = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $rows_pm) {
+              ?>
+                  <div class="invitation">
+                    <p><?php echo $rows_pm['prenom']; ?></p>
+                    <a href="">Envoyer une invitation</a>
+                  </div>
+                <?php } ?>
+              <?php } else { ?>
+                <div class="invitation">
+                  <p>
+                    Aucune personne pour le moment!
+                  </p>
+                </div>
+              <?php } ?>
             </div>
           </div>
 
@@ -250,22 +311,25 @@
               <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="champ" style="display:none" id="section_CYBER">
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Envoyer une invitation</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
+              <?php
+              $req = $pdo->prepare("SELECT * FROM users WHERE promotion = 'cybersecurite'");
+              $req->execute();
+              if ($req->rowCount() > 0) {
+                $results = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $rows_cyber) {
+              ?>
+                  <div class="invitation">
+                    <p><?php echo $rows_cyber['prenom']; ?></p>
+                    <a href="">Envoyer une invitation</a>
+                  </div>
+                <?php } ?>
+              <?php } else { ?>
+                <div class="invitation">
+                  <p>
+                    Aucune personne pour le moment!
+                  </p>
+                </div>
+              <?php } ?>
             </div>
           </div>
 
@@ -273,24 +337,27 @@
             <div class="title_item" id="btn-title6">
               <h2>BACHELOR DEV</h2>
               <i class="fa-solid fa-chevron-down"></i>
-            </div>>
+            </div>
             <div class="champ" style="display:none" id="section_BD">
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Envoyer une invitation</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
+              <?php
+                $req = $pdo->prepare("SELECT * FROM users WHERE promotion = 'Bachelor Dev'");
+                $req->execute();
+                if ($req->rowCount() > 0) {
+                $results = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $rows_dev) {
+              ?>
+                  <div class="invitation">
+                    <p><?php echo $rows_dev['prenom']; ?></p>
+                    <a href="">Envoyer une invitation</a>
+                  </div>
+                <?php } ?>
+              <?php } else { ?>
+                <div class="invitation">
+                  <p>
+                    Aucune personne pour le moment!
+                  </p>
+                </div>
+              <?php } ?>
             </div>
           </div>
 
@@ -300,22 +367,25 @@
               <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="champ" style="display:none" id="section_B3D">
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Envoyer une invitation</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
+            <?php
+                $req = $pdo->prepare("SELECT * FROM users WHERE promotion = 'Bachelor 3D'");
+                $req->execute();
+                if ($req->rowCount() > 0) {
+                $results = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $rows_3d) {
+              ?>
+                  <div class="invitation">
+                    <p><?php echo $rows_3d['prenom']; ?></p>
+                    <a href="">Envoyer une invitation</a>
+                  </div>
+                <?php } ?>
+              <?php } else { ?>
+                <div class="invitation">
+                  <p>
+                    Aucune personne pour le moment!
+                  </p>
+                </div>
+              <?php } ?>
             </div>
           </div>
 
@@ -325,22 +395,25 @@
               <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="champ" style="display:none" id="section_DATA">
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Envoyer une invitation</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
+            <?php
+                $req = $pdo->prepare("SELECT * FROM users WHERE promotion = 'Bachelor Data&IA'");
+                $req->execute();
+                if ($req->rowCount() > 0) {
+                $results = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $rows_data_ia) {
+              ?>
+                  <div class="invitation">
+                    <p><?php echo $rows_data_ia['prenom']; ?></p>
+                    <a href="">Envoyer une invitation</a>
+                  </div>
+                <?php } ?>
+              <?php } else { ?>
+                <div class="invitation">
+                  <p>
+                    Aucune personne pour le moment!
+                  </p>
+                </div>
+              <?php } ?>
             </div>
           </div>
 
@@ -350,22 +423,25 @@
               <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="champ" style="display:none" id="section_UX">
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Envoyer une invitation</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
-              <div class="invitation">
-                <p>Alfred</p>
-                <a href="">Ajouter comme ami(e)</a>
-              </div>
+            <?php
+                $req = $pdo->prepare("SELECT * FROM users WHERE promotion = 'Bachelor webmarketing&Ux'");
+                $req->execute();
+                if ($req->rowCount() > 0) {
+                $results = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $rows_web_ux) {
+              ?>
+                  <div class="invitation">
+                    <p><?php echo $rows_web_ux['prenom']; ?></p>
+                    <a href="">Envoyer une invitation</a>
+                  </div>
+                <?php } ?>
+              <?php } else { ?>
+                <div class="invitation">
+                  <p>
+                    Aucune personne pour le moment!
+                  </p>
+                </div>
+              <?php } ?>
             </div>
           </div>
         </div>
@@ -416,10 +492,9 @@
           <!-- <i class="fa-sharp fa-light fa-paper-plane fa-beat" style="color: #6688c6;"></i> -->
         </div>
       </section>
-
     </div>
   </div>
-  <script src="Js/scripts.js"></script>
+  <script src="Js/chat.js"></script>
 </body>
 
 </html>
