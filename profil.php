@@ -33,8 +33,12 @@ if (isset($_FILES['photo'])) {
     $error_upload['check_size'] = $msg;
   }
 
-  if (file_exists($file_name))
-    move_uploaded_file($tmp_name, $folder2 . $file_name);
+  // if (file_exists($file_name)){
+  //   move_uploaded_file($tmp_name, $folder2 . $file_name);
+  // }
+  // else {
+  //   echo "ekko";
+  // }
   if (move_uploaded_file($tmp_name, $folder1 . $file_name)) {
     $pdo->exec("UPDATE users SET profil = '$file_name', date_update = '$date_update' WHERE id_users = '" . $_SESSION['user']['id_users'] . "' ");
     $msg = "Votre Photo a été ajouté";

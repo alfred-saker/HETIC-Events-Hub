@@ -40,9 +40,13 @@ if(!isset($_SESSION['user'])){
       </ul>
     </nav>
   </header>
-  <h3><a href="espace_perso.php">Mon espace personnel</a>/mes Associations</h3>
 
+  
+  <h2 class="classTitleWelcome">Recapitulatif de vos évènements</h2>
   <div class="classContainerEvenement">
+    <?php
+    $req1 = $pdo->prepare("SELECT * FROM events WHERE id_users")
+     ?>
     <div class="classBlockEvenement">
       <div class="classImageEvenement">
         <img src="img/association.png" alt="Image Association">

@@ -31,8 +31,6 @@ if ($_POST) {
     $errors_events['image'] = "Veuillez selectionner une image";
   } 
   else {
-    var_dump("Repond");
-    // die();
     $tmp_name = $_FILES['picture']['tmp_name'];
 
     $files_extensions = strrchr($_FILES['picture']['type'], '/');
@@ -67,8 +65,12 @@ if ($_POST) {
   }
   
   if (empty($errors_events)){
-    var_dump($files_name);
-    $requete = $pdo->prepare(" INSERT INTO events (id_users, titre_event, lieu, description , profil, date_debut, date_fin,) VALUES (:id_users, :titre_events, :lieu,:description,  :photo, :date_debut, :date_fin)" );
+    $requete = $pdo->prepare(" INSERT INTO events(id_users, titre_event, lieu, description , profil, date_debut, date_fin) VALUES (:id_users, :titre_events, :lieu,:description, :photo, :date_debut, :date_fin)");
+    $timestamp1 = strtotime($_POST['date_debut']);
+    $timestamp2 = strtotime($_POST['date_fin']);
+    $date_format = 'Y-m-d H:i:s';
+    $formatted_date1 =  date($date_format,$timestamp1);
+    $formatted_date2 =  date($date_format,$timestamp2);
 
     $requete->execute(array(
       ':id_users' => $_SESSION['user']['id_users'],
@@ -76,12 +78,9 @@ if ($_POST) {
       ':lieu' => $_POST['lieu'],
       ':description' => $_POST['description'],
       ':photo' => $files_name,
-      ':date_debut' => $_POST['date_debut'],
-      ':date_fin' => $_POST['date_fin']
+      ':date_debut' =>$formatted_date1,
+      ':date_fin' => $formatted_date2
     ));
-    var_dump($requete->queryString) ;
-    // var_dump($requete->queryString;);
-    die();
     // header('Location:image_event.php');
   }
 }
@@ -151,7 +150,7 @@ if ($_POST) {
           </div>
           <div class="space">
             <label for="date">Date debut <span style="color:red;">*</span></label>
-            <input type="datetime-local" name="date_debut" value="<?php echo htmlspecialchars($_POST['date_debut']); ?>">
+            <input type="datetime-local" name="date_debut" value="">
             <?php if (isset($errors_events['date_debut'])) : ?>
               <div class="error">
                 <p style="color: red;">
@@ -169,7 +168,7 @@ if ($_POST) {
           </div>
           <div class="space">
             <label for="date">Date fin <span style="color:red;">*</span></label>
-            <input type="datetime-local" name="date_fin" value="<?php echo htmlspecialchars($_POST['date_fin']); ?>">
+            <input type="datetime-local" name="date_fin" value="">
             <?php if (isset($errors_events['date_fin'])) : ?>
               <div class="error">
                 <p style="color: red;">
