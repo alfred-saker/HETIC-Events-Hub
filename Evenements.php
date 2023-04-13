@@ -1,3 +1,12 @@
+<?php
+include('config.php');
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,8 +31,8 @@
     <nav>
       <ul class="links">
         <li><a href="#">Evenements</a></li>
-        <li><a href="#">Associations</a></li>
-        <li><a href="#">Espace personnel</a></li>
+        <li><a href="association_listing.php">Associations</a></li>
+        <li><a href="espace_perso.php">Espace personnel</a></li>
       </ul>
       <ul class="deconnexion">
         <li><a href="?action=logout" class="logout">Deconnexion </a></li>
@@ -35,10 +44,20 @@
     <h1>LES EVENEMENTS</h1>
     <p>Quelques uns de nos evènements</p>
   </div>
-
+  <?php 
+  $id = $_SESSION['user']['id_users'];
+  $check = $pdo->prepare("SELECT * FROM users WHERE id_users= '$id' ");
+  $check->execute();
+  $check_result = $check->fetchAll();
+  foreach ($check_result as $key) {
+    if($key['type']=='association'){
+  ?> 
   <div class="sous-tittle">
     <a href="create_events.php" class="btn-creat">CREER UN EVENT</a>
   </div>
+  <?php }?>
+  <?php }?>
+
   <div class="events">
     <div class="event">
       <img src="img/Rectangle 64.svg" alt="">
