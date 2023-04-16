@@ -24,16 +24,16 @@ $sql->execute(array(
   'id_destinataire' => $_POST['id_destinataire'],
 ));
 }
-if (isset($_POST['delete'])) {
-$sql = $pdo->prepare("UPDATE invitation SET statut_invitation =:statut WHERE id_user_destinataire = :id_destinataire AND id_user_emetteur = :id_emetteur ");
-$sql->execute(array(
-  ':statut' => 'Annuler',
-  'id_emetteur' => $_POST['id_emetteur'],
-  'id_destinataire' => $_POST['id_destinataire'],
-));
-echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Mot de passe renitialisé avec succès! Veuillez vous connecter !</div>';
-header("Location" . $_SERVER['PHP_SELF']);
-}
+// if (isset($_POST['delete'])) {
+// $sql = $pdo->prepare("UPDATE invitation SET statut_invitation =:statut WHERE id_user_destinataire = :id_destinataire AND id_user_emetteur = :id_emetteur ");
+// $sql->execute(array(
+//   ':statut' => 'Annuler',
+//   'id_emetteur' => $_POST['id_emetteur'],
+//   'id_destinataire' => $_POST['id_destinataire'],
+// ));
+// echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Votre invitation a bien été annulée</div>';
+// header("Location" . $_SERVER['PHP_SELF']);
+// }
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +61,7 @@ header("Location" . $_SERVER['PHP_SELF']);
   <a class="logo" href="home.php"><img src="img/logo1.svg" alt="Logo"></a>
   <nav>
     <ul class="links" id="menuLink">
-      <li><a href="#">Evenements</a></li>
+      <li><a href="Evenements.php">Evenements</a></li>
       <li><a href="association_listing.php">Associations</a></li>
       <li><a href="espace_perso.php">Espace personnel</a></li>
     </ul>
@@ -94,8 +94,8 @@ header("Location" . $_SERVER['PHP_SELF']);
         <div class="info_row">
           <p><?php echo $rows_lignes['prenom']; ?>&nbsp;<?php echo $rows_lignes['nom']; ?></p>
           <p style="text-transform: capitalize;"><?php echo $rows_lignes['promotion']; ?></p>
-          <form action="" method="post">
-            <!-- <input type="hidden" name="id_destinataire" value="<?php echo $_SESSION['user']['id_users']; ?>"> -->
+          <form action="#" method="post">
+            <input type="hidden" name="id_destinataire" value="<?php echo $_SESSION['user']['id_users']; ?>">
             <!-- <input type="hidden" name="id_emetteur" value="<?php echo $rows_lignes['id_user_emetteur']; ?>"> -->
             <button type="submit" name="delete" class="btn-rejet">Annuler invitation</button>
           </form>
@@ -166,6 +166,8 @@ header("Location" . $_SERVER['PHP_SELF']);
   </div>
 </footer>
 <script src="Js/scripts.js"></script>
+<script src="Js/events.js"></script>
+<script src="Js/chat.js"></script>
 </body>
 
 </html>

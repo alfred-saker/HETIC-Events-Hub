@@ -5,24 +5,24 @@ if(!isset($_SESSION['user'])){
 }
 
 if ($_POST) {
-  $error_search = '';
-  if (empty($eror_search)) {
-    $search_sql = $pdo->prepare("SELECT * FROM users WHERE nom IN('$_POST[search]') OR prenom IN('$_POST[search]') AND type='etudiant'");
+  $id_emetteur = $_SESSION['user']['id_users'];
+  $name = $_SESSION['user']['nom'];
+  $error_search =array();
+  if (empty($error_search)) {
+    $search_sql = $pdo->prepare("SELECT * FROM users WHERE nom IN('$_POST[search]') OR prenom IN('$_POST[search]') AND nom != '$name' AND type='etudiant'");
     $search_sql->execute();
     if ($search_sql->rowCount() > 0) {
       $resul = $search_sql->fetchAll(PDO::FETCH_ASSOC);
       foreach ($resul as $rows_result) {
-        $error_search .= ' <div class="search-down" id="div_display">
-            <div class="infos_search">
-              <p>'.$rows_result['nom'].'&nbsp;'.$rows_result['prenom'].'</p>
-              <p><button type="submit" class="btn-search">Envoyez un message</button></p>
-            </div>
-          </div>';
+        $id_destinataire = $rows_result['id_users'];
+        // echo $rows_result['id_users'];
+        $error_search['display_result'] = '<input type="hidden" name="id_destinataire" value="'.$id_destinataire.'" /><p>'.$rows_result['nom'].'&nbsp;'.$rows_result['prenom'].'</p>';
       }
       header("Location" . $_SERVER['PHP_SELF']);
     } else {
-      $error_search .=' <div class="search-down" id="div_display">
+      $error_search['echec_result']=' <div class="search-down" id="div_display">
       <div class="infos_search" style="margin:5em auto;">
+        <img src="img/trouver.png" alt="icone not found" style="width:10%;">
         <p>Aucun resultat ne correspond à votre recherche</p>
       </div>
     </div>';
@@ -30,7 +30,20 @@ if ($_POST) {
     }
   }
 }
+if(isset($_POST['invitation_form'])){
+  $msg_send = "";
+  $id_dest = $_POST['id_destinataire'];
+  $id_emet = $_POST['id_emetteur'];
 
+  $req_sql = $pdo->prepare("INSERT INTO invitation (id_user_emetteur,id_user_destinataire,statut_invitation) VALUES (:id_emetteur,:id_destinataire,:statut)");
+  $req_sql->execute(array(
+    ':id_emetteur'=>$id_emet,
+    ':id_destinataire'=>$id_dest,
+    ':statut'=>'En attente'
+  ));
+  $msg_send .="Votre invitation a bien été envoyé!"; 
+  header("Refresh: 3; url=chat_contact.php");
+}
 ?>
 
 
@@ -59,7 +72,7 @@ if ($_POST) {
   <a class="logo" href="home.php"><img src="img/logo1.svg" alt="Logo"></a>
   <nav>
     <ul class="links" id="menuLink">
-      <li><a href="">Evenements</a></li>
+      <li><a href="Evenements.php">Evenements</a></li>
       <li><a href="association_listing.php">Associations</a></li>
       <li><a href="espace_perso.php">Espace personnel</a></li>
     </ul>
@@ -68,18 +81,34 @@ if ($_POST) {
     </ul>
   </nav>
 </header>
+<?php if(isset($msg_send)):?>
+  <div class="generate-error">
+    <p style="background-color: #14AE5C; color: #ffff; padding: 20px;text-align:center;"><?php echo $msg_send; ?></p>
+  </div>
+<?php endif;?>
 <div class="container-chat">
   <?php if (isset($error_search)) { ?>
     <div class="chat-left">
       <form action="" method="POST">
         <div class="search-container">
-          <input type="search" placeholder="Rechercher un contact...." name="search" autocomplete="off" id="search_input" value="<?php echo htmlspecialchars($_POST['search']);?>">
+          <input type="search" placeholder="Rechercher un contact...." name="search" autocomplete="off" id="search_input">
           <button type="submit">Search<i class="fa fa-search"></i></button>
         </div>
-        <?php if($error_search):?>
-          <?php echo $error_search; ?>
-        <?php endif;?>
       </form>
+      <?php if(isset($error_search['display_result'])):?>
+        <div class="search-down" id="div_display">
+          <form action="" method="POST">
+            <input type="hidden" name="id_emetteur" value="<?php echo $_SESSION['user']['id_users'];?>"/>
+            <div class="infos_search">
+              <?php echo $error_search['display_result']; ?>
+              <p><button type="submit" name="invitation_form" class="btn-search">Envoyez une invitation</button></p>
+            </div>
+          </form>
+        </div>
+      <?php endif;?>
+      <?php if(isset($error_search['echec_result'])):?>
+        <?php echo $error_search['echec_result']; ?>
+      <?php endif;?>
     </div>
   <?php } else { ?>
     <div class="chat-left">
@@ -109,6 +138,7 @@ if ($_POST) {
         </div>
         <div class="info_rows">
           <h3><?php echo $rows_result['nom']; ?>&nbsp;<?php echo $rows_result['prenom']; ?></h3>
+          <a href="messagerie.php">messagerie</a>
           <form>
             <button type="submit" name="echec" class="btn-rejets">Envoyez un message</button>
           </form>
@@ -139,6 +169,7 @@ if ($_POST) {
   </div>
 </footer>
 <script src="Js/scripts.js"></script>
+<script src="Js/events.js"></script>
 <script src="Js/chat.js"></script>
 </body>
 

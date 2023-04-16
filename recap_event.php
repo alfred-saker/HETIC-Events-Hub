@@ -1,9 +1,12 @@
 <?php
 include("config.php");
 
+if(!isset($_SESSION['user'])){
+  header('Location:index.php');
+}
+
 if ($_POST) {
   $errors_events = array();
-
 
   if (isset($_FILES['picture']) && $_FILES['picture']['error'] == UPLOAD_ERR_NO_FILE) {
     $errors_events['image'] = "Veuillez selectionner une image";
@@ -13,7 +16,7 @@ if ($_POST) {
     $files_extensions = strrchr($_FILES['picture']['type'], '/');
     $files_extensions = str_replace('/', '.', $files_extensions);
 
-    $files_name = date("Ymdh") . $files_extensions;
+    $files_name = date("Ymdh").$_POST['id_events']. $files_extensions;
     $max_size = 500000;
     $files_size = filesize($tmp_name);
 
@@ -32,11 +35,18 @@ if ($_POST) {
   }
 
   if (empty($errors_events)) {
-    $requete = $pdo->prepare(" UPDATE events  SET id_events = '$_POST[id_events]', id_users = '$_SESSION[user][id_users]' , titres_events ='$_POST[titre_events]',lieu =' $_POST[lieu]', description = '$_POST[description]', profil ='$files_name', date_debut = '$_POST[date_debut]', date_fin = '$_POST[date_fin]' WHERE id_events='$_POST[id_events]'");
-    $requete->execute();
-    $errors_events['success'] = '<div style="background-color:green;padding:1em;text-align:center;">Félicitation votre évènement a été bien créee!</div>';
-    sleep(3000);
-    header('Location:Evenements.php');
+    $id = $_SESSION['user']['id_users'];
+    $requete = $pdo->prepare(" UPDATE events SET titre_event =:titre, lieu =:lieu, description =:description, profile_event =:profil, date_debut =:date_debut, date_fin =:date_fin WHERE id_events='$_POST[id_events]' AND id_users = '$id'");
+    $requete->execute(array(
+      ':titre'=>$_POST['titre_events'],
+      ':lieu'=>$_POST['lieu'],
+      ':description'=>$_POST['description'],
+      ':profil'=>$files_name,
+      ':date_debut'=>$_POST['date_debut'],
+      ':date_fin'=>$_POST['date_fin']
+    ));
+    echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Evenement créee avec success</div>';
+    header("Refresh: 6; url=Evenements.php");
   }
 }
 ?>
@@ -54,6 +64,8 @@ if ($_POST) {
   <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   <link rel="shortcut icon" href="img/logo.svg" type="image/x-icon">
   <title>HETIC - Events Hub Creation évènements</title>
 </head>
@@ -66,7 +78,9 @@ if ($_POST) {
     <h1>RECAPITULATIF D'EVENEMENT</h1>
   </div>
   <?php if (isset($errors_events['success'])) : ?>
-    <?php  echo $errors_events['success']; ?>
+    <div class="alert alert-primary" role="alert">
+      <?php echo $errors_events['success']; ?>
+    </div>
   <?php endif; ?>
   <section>
    <?php
@@ -139,6 +153,8 @@ if ($_POST) {
     </div>
   </footer>
   <script src="Js/scripts.js"></script>
+  <script src="Js/events.js"></script>
+  <script src="Js/chat.js"></script>
 </body>
 
 </html>

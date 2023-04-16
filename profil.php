@@ -126,7 +126,7 @@ if (isset($_POST['connexion'])) {
     <a class="logo" href="home.php"><img src="img/logo1.svg" alt="Logo"></a>
     <nav>
       <ul class="links" id="menuLink">
-        <li><a href="#">Evenements</a></li>
+        <li><a href="Evenements">Evenements</a></li>
         <li><a href="association_listing.php">Associations</a></li>
         <li><a href="espace_perso.php">Espace personnel</a></li>
       </ul>
@@ -210,7 +210,7 @@ if (isset($_POST['connexion'])) {
 
             <div class="itemUpdateform">
               <label for="nom">Nom</label>
-              <input type="text" name="nom" id="nom_user_update" autocomplete=off placeholder="Saisissez votre nom">
+              <input type="text" name="nom" id="nom_user_updates" autocomplete=off placeholder="Saisissez votre nom">
               <?php if (isset($errors_update['nom'])) : ?>
                 <p style="color:red;"><?php echo $errors_update['nom']; ?></p>
               <?php endif; ?>
@@ -313,6 +313,8 @@ if (isset($_POST['connexion'])) {
     </div>
   </footer>
   <script src="Js/scripts.js"></script>
+  <script src="Js/events.js"></script>
+  <script src="Js/chat.js"></script>
 </body>
 
 </html>

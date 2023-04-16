@@ -87,103 +87,102 @@ if ($_POST) {
     <?php
     if (isset($errors_events)) {
     ?>
-    <form action="" method="POST" enctype="multipart/form-data">
-      <?php if (isset($errors_events['check_events'])) : ?>
-        <p style="color:red;margin:0 auto 1em 19.5em;">
-          <?php echo $errors_events['check_events']; ?>
-        </p>
-      <?php endif; ?>
-      <?php if (isset($errors_events['check_events'])) : ?>
-        <p style="color:red;margin:0 auto 1em 19.5em;">
-          <?php echo $errors_events['check_events']; ?>
-        </p>
-      <?php endif; ?>
-      <div class="content">
-        <div class="space">
-          <label for="titre_events">Titre Evenement <span style="color:red;">*</span></label>
-          <input type="text" name="titre_events" placeholder="Titre Event" value="<?php echo htmlspecialchars($_POST['titre_events']); ?>" autocomplete="off">
-          <?php if (isset($errors_events['titre_events'])) : ?>
-            <p style="color: red; margin:0px">
-              <?php echo $errors_events['titre_events']; ?>
-            </p>
-          <?php endif; ?>
-        </div>
-        <div class="space">
-          <label for="lieu">Lieu</label>
-          <input type="text" name="lieu" placeholder="lieu" value="<?php echo htmlspecialchars($_POST['lieu']); ?>" autocomplete="off">
-          <?php if (isset($errors_events['lieu'])) : ?>
-          <p style="color:red; margin:0px">
-            <?php echo $errors_events['lieu']; ?>
+      <form action="" method="POST" enctype="multipart/form-data">
+        <?php if (isset($errors_events['check_events'])) : ?>
+          <p style="color:red;margin:0 auto 1em 19.5em;">
+            <?php echo $errors_events['check_events']; ?>
           </p>
-          <?php endif;?>
-        </div>
-        <div class="space">
-          <label for="date">Debut de l'évènement <span style="color:red;">*</span></label>
-          <input type="datetime-local" name="date_debut" placeholder="date" autocomplete="off">
-          <?php if (isset($errors_events['date_debut'])) : ?>
-          <p style="color: red; margin:0px">
-            <?php echo $errors_events['date_debut']; ?>
+        <?php endif; ?>
+        <?php if (isset($errors_events['check_events'])) : ?>
+          <p style="color:red;margin:0 auto 1em 19.5em;">
+            <?php echo $errors_events['check_events']; ?>
           </p>
-          <?php endif; ?>
-          <?php if (isset($errors_events['date'])) : ?>
-          <p style="color: red; margin:0px">
-            <?php echo $errors_events['date']; ?>
-          </p>
-          <?php endif; ?>
-        </div>
-        <div class="space">
-          <label for="date">Fin de l'évènement <span style="color:red;">*</span></label>
-          <input type="datetime-local" name="date_fin" placeholder="date" autocomplete="off">
-          <?php if (isset($errors_events['date_fin'])) : ?>
-          <p style="color: red; margin:0px;">
-            <?php echo $errors_events['date_fin']; ?>
-          </p>
-          <?php endif; ?>
-        </div>
-        <div class="space-description">
-          <label for="desc">Decription de l'evenement<span style="color:red;">*</span></label>
-          <textarea name="description" placeholder="description"
-            ><?php echo htmlspecialchars($_POST['description']); ?></textarea>
-          <?php if (isset($errors_events['description'])) : ?>
-          <p style="color: red; margin:0px">
-            <?php echo $errors_events['description']; ?>
-          </p>
-          <?php endif; ?>
+        <?php endif; ?>
+        <div class="content">
+          <div class="space">
+            <label for="titre_events">Titre Evenement <span style="color:red;">*</span></label>
+            <input type="text" name="titre_events" placeholder="Titre Event" value="<?php echo htmlspecialchars($_POST['titre_events']); ?>" autocomplete="off">
+            <?php if (isset($errors_events['titre_events'])) : ?>
+              <p style="color: red; margin:0px">
+                <?php echo $errors_events['titre_events']; ?>
+              </p>
+            <?php endif; ?>
+          </div>
+          <div class="space">
+            <label for="lieu">Lieu</label>
+            <input type="text" name="lieu" placeholder="lieu" value="<?php echo htmlspecialchars($_POST['lieu']); ?>" autocomplete="off">
+            <?php if (isset($errors_events['lieu'])) : ?>
+              <p style="color:red; margin:0px">
+                <?php echo $errors_events['lieu']; ?>
+              </p>
+            <?php endif; ?>
+          </div>
+          <div class="space">
+            <label for="date">Debut de l'évènement <span style="color:red;">*</span></label>
+            <input type="datetime-local" name="date_debut" placeholder="date" autocomplete="off">
+            <?php if (isset($errors_events['date_debut'])) : ?>
+              <p style="color: red; margin:0px">
+                <?php echo $errors_events['date_debut']; ?>
+              </p>
+            <?php endif; ?>
+            <?php if (isset($errors_events['date'])) : ?>
+              <p style="color: red; margin:0px">
+                <?php echo $errors_events['date']; ?>
+              </p>
+            <?php endif; ?>
+          </div>
+          <div class="space">
+            <label for="date">Fin de l'évènement <span style="color:red;">*</span></label>
+            <input type="datetime-local" name="date_fin" placeholder="date" autocomplete="off">
+            <?php if (isset($errors_events['date_fin'])) : ?>
+              <p style="color: red; margin:0px;">
+                <?php echo $errors_events['date_fin']; ?>
+              </p>
+            <?php endif; ?>
+          </div>
+          <div class="space-description">
+            <label for="desc">Decription de l'evenement<span style="color:red;">*</span></label>
+            <textarea name="description" placeholder="description"><?php echo htmlspecialchars($_POST['description']); ?></textarea>
+            <?php if (isset($errors_events['description'])) : ?>
+              <p style="color: red; margin:0px">
+                <?php echo $errors_events['description']; ?>
+              </p>
+            <?php endif; ?>
+          </div>
+          <div class="actions">
+            <a href="index.php">Annuler</a>
+            <input class="suivant" type="submit" value="Suivant">
+          </div>
+      </form>
+    <?php } else { ?>
+      <form action="" method="POST" enctype="multipart/form-data">
+        <div class="content">
+          <div class="space">
+            <label for="titre_events">Titre Evenement <span style="color:red;">*</span></label>
+            <input type="text" name="titre_events" placeholder="Titre Event" autocomplete="off">
+          </div>
+          <div class="space">
+            <label for="lieu">Lieu</label>
+            <input type="text" name="lieu" placeholder="lieu" autocomplete="off">
+          </div>
+          <div class="space">
+            <label for="date">Debut de l'évènement <span style="color:red;">*</span></label>
+            <input type="datetime-local" name="date_debut" placeholder="date " autocomplete="off">
+          </div>
+          <div class="space">
+            <label for="date">Fin de l'évènement <span style="color:red;">*</span></label>
+            <input type="datetime-local" name="date_fin" placeholder="date" autocomplete="off">
+          </div>
+          <div class="space-description">
+            <label for="desc">Decription de l'evenement<span style="color:red;">*</span></label>
+            <textarea name="description" placeholder="description"></textarea>
+          </div>
         </div>
         <div class="actions">
           <a href="index.php">Annuler</a>
-          <input class="suivant" type="submit" value="Suivant">
+          <input class="suivant" type="submit" value="Valider">
         </div>
-    </form>
-    <?php } else { ?>
-    <form action="" method="POST" enctype="multipart/form-data">
-      <div class="content">
-        <div class="space">
-          <label for="titre_events">Titre Evenement <span style="color:red;">*</span></label>
-          <input type="text" name="titre_events" placeholder="Titre Event" autocomplete="off">
-        </div>
-        <div class="space">
-          <label for="lieu">Lieu</label>
-          <input type="text" name="lieu" placeholder="lieu" autocomplete="off">
-        </div>
-        <div class="space">
-          <label for="date">Debut de l'évènement <span style="color:red;">*</span></label>
-          <input type="datetime-local" name="date_debut" placeholder="date " autocomplete="off">
-        </div>
-        <div class="space">
-          <label for="date">Fin de l'évènement <span style="color:red;">*</span></label>
-          <input type="datetime-local" name="date_fin" placeholder="date" autocomplete="off">
-        </div>
-        <div class="space-description">
-          <label for="desc">Decription de l'evenement<span style="color:red;">*</span></label>
-          <textarea name="description" placeholder="description"></textarea>
-        </div>
-      </div>
-      <div class="actions">
-        <a href="index.php">Annuler</a>
-        <input class="suivant" type="submit" value="Valider">
-      </div>
-    </form>
+      </form>
     <?php } ?>
   </section>
   <footer>
@@ -207,6 +206,8 @@ if ($_POST) {
     </div>
   </footer>
   <script src="Js/scripts.js"></script>
+  <script src="Js/events.js"></script>
+  <script src="Js/chat.js"></script>
 </body>
 
 </html>

@@ -15,18 +15,18 @@ if (imageInput) {
   });
 }
 
-// let menu_Burger = document.querySelector("#menu_Burger");
-// let menuLink = document.querySelector("#menuLink");
+let menu_Burger = document.querySelector("#menu_Burger");
+let menuLink = document.querySelector("#menuLink");
 
-// menu_Burger.addEventListener("click", () => {
-//   if (menuLink.style.display === "block") {
-//     menuLink.style.display = "none";
-//   } else {
-//     menuLink.style.display = "block";
-//   }
-// });
+menu_Burger.addEventListener("click", () => {
+  if (menuLink.style.display === "block") {
+    menuLink.style.display = "none";
+  } else {
+    menuLink.style.display = "block";
+  }
+});
 
-let name_user = document.querySelector("#nom_user_update");
+let name_user = document.querySelector("#nom_user_updates");
 let prenom_user = document.querySelector("#prenom_user_update");
 let descrip = document.querySelector("#description_update");
 let btn_update1 = document.querySelector("#update2");
@@ -66,6 +66,7 @@ var previewPicture = function (e) {
     image.src = URL.createObjectURL(picture);
   }
 };
+
 
 
 

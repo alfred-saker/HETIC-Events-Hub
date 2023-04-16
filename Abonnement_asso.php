@@ -4,15 +4,16 @@ if(!isset($_SESSION['user'])){
   header('location:index.php');
 }
 if($_POST){
-
+  $error_desabonne = '';
   $data_id = array(
     'id_asso'=>$_POST['id_association'],
     'id_etu'=>$_SESSION['user']['id_users']
   );
-  $reqt = $pdo->exec("UPDATE abonnement SET abonnement.status = '0' WHERE abonnement.id_asso = '$data_id[id_asso]' AND abonnement.id_etudiant = '$data_id[id_etu]'");
-  echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Désabonnement reussie!</div>';
-  header("Location: " . $_SERVER['PHP_SELF']);
-  exit();
+  if(empty($error_desabonne)){
+    $reqt = $pdo->exec("UPDATE abonnement SET abonnement.status = '0' WHERE abonnement.id_asso = '$data_id[id_asso]' AND abonnement.id_etudiant = '$data_id[id_etu]'");
+    $error_desabonne .= 'Désabonnement reussi 😥';
+  }
+  header("Refresh: 3; url=Abonnement_asso.php");
 }
 
 ?>
@@ -42,7 +43,7 @@ if($_POST){
     <a class="logo" href="home.php"><img src="img/logo1.svg" alt="Logo"></a>
     <nav>
       <ul class="links" id="menuLink">
-        <li><a href="#">Evenements</a></li>
+        <li><a href="Evenements.php">Evenements</a></li>
         <li><a href="association_listing.php">Associations</a></li>
         <li><a href="espace_perso.php">Espace personnel</a></li>
       </ul>
@@ -52,6 +53,11 @@ if($_POST){
     </nav>
   </header>
 
+  <?php if(isset($error_desabonne)):?>
+    <div class="generate-error">
+      <p style="background-color: #14AE5C; color: #ffff; padding: 20px;text-align:center;"><?php echo $error_desabonne; ?></p>
+    </div>
+  <?php endif;?>
   <div class="classContainerAbonnement_asso">
     <?php 
        $requete = $pdo->prepare("
@@ -93,7 +99,7 @@ if($_POST){
     </div>
     <?php }?>
     <?php }else{?>
-      <h3 class="blockMsgAsso" style="color:black;">Vous n'êtes abonné(e) à aucune association pour le moment 😥 Retrouvez toutes nos associations <a href="association_listing.php"><strong> ici</strong></a> </h3>
+      <h3 class="blockMsgAsso" style="color:black;">Vous n'êtes abonné(e) à aucune association pour le moment 😥 Retrouvez toutes nos associations <a href="association_listing.php"><strong style="font-size: 25px;"> ici</strong></a> </h3>
     <?php }?>
   </div>
 
@@ -116,6 +122,8 @@ if($_POST){
     </div>
   </footer>
   <script src="Js/scripts.js"></script>
+  <script src="Js/events.js"></script>
+  <script src="Js/chat.js"></script>
 </body>
 
 </html>

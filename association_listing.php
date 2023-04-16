@@ -1,13 +1,13 @@
 <?php
 include('config.php');
 
-if(!isset($_SESSION['user'])){
+if (!isset($_SESSION['user'])) {
   header('location:index.php');
 }
 
 if ($_POST) {
-  
-  $error_abonne = "";
+
+  $error_abonne = array();
 
   $user_id_asso = $_POST['id_user_asso'];
   $user_id_etu = $_POST['id_user_etudiant'];
@@ -19,18 +19,20 @@ if ($_POST) {
 
   if ($check->rowCount() >= 1) {
     $pdo->exec("UPDATE abonnement SET abonnement.status = '1' WHERE abonnement.id_asso = '$user_id_asso' AND abonnement.id_etudiant = '$user_id_etu'");
-    $error_abonne .= "Abonnement reussi";
+    $error_abonne['reabonne'] = "Votre Abonnement à été mis à jour";
+    // echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Votre Abonnement à été mis à jour</div>';
   }
   if ($chef_if_abonne->rowCount() >= 1) {
-    var_dump("vrai");
-    // die();
-    $error_abonne .= "Vous êtes deja abonné(e) à cette association";
+    $error_abonne['already_abonne'] = "Vous êtes deja abonné(e) à cette association";
+    // echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Vous êtes deja abonné(e) à cette association!</div>';
+
   }
   if (empty($error_abonne)) {
     $pdo->exec("INSERT INTO abonnement (id_asso, id_etudiant,  status,date_abonnement) VALUES ('$user_id_asso', '$user_id_etu', '1','$date')");
-    $error_abonne .= "Abonnement reussi";
+    $error_abonne['success'] = "Abonnement reussi";
+    // echo '<div style="background-color: #26E8A0; color: #ffff; padding: 10px;">Abonnement reussi!</div>';
   }
-  header("Location: " . $_SERVER['PHP_SELF']);
+  header("Refresh: 3; url=association_listing.php");
 }
 ?>
 
@@ -55,11 +57,11 @@ if ($_POST) {
 <body>
   <header>
     <img src="img/menu.png" alt="Menu burger" class="burger" id="menu_Burger">
-    <a class="logo" href=""><img src="img/logo1.svg" alt=""></a>
+    <a class="logo" href="home.php"><img src="img/logo1.svg" alt=""></a>
     <nav>
       <ul class="links" id="menuLink">
-        <li><a href="#">Evenements</a></li>
-        <li><a href="#">Associations</a></li>
+        <li><a href="Evenements.php">Evenements</a></li>
+        <li><a href="association_listing.php">Associations</a></li>
         <li><a href="espace_perso.php">Espace personnel</a></li>
       </ul>
       <ul class="deconnexion">
@@ -71,74 +73,85 @@ if ($_POST) {
     <h1 class="titre-asso">Associations</h1>
     <p>Toutes nos association d'HETIC!</p>
   </div>
-  <?php if (isset($error_abonne)) {?>
-    <p style="color:red;"><?php echo $error_abonne;?></p>
-  <div class="containerListAsso">
-    <?php
-    $req = $pdo->query("SELECT * FROM users WHERE type = 'association'");
-    while ($data = $req->fetch()) {
-    ?>
-    <div class="itemListAsso">
-      <div class="itemBlockImgAsso">
-        <?php if (isset($data['profil'])) { ?>
-        <?php echo '<img src="img/folder_profil_user/' . $data['profil'] . '" alt="Icon">'; ?>
-        <?php } else { ?>
-        <img src="img/association.png" alt="Icon">
-        <?php } ?>
+  <?php if (isset($error_abonne)) { ?>
+    <?php if (isset($error_abonne['success'])) : ?>
+      <div class="generate-error">
+        <p style="background-color: #14AE5C; color: #ffff; padding: 20px; text-align:center;"><?php echo $error_abonne['success']; ?></p>
       </div>
-      <?php if (isset($error_abonne['success']) || isset($error_abonne['success1'])) : ?>
-
-      <?php endif; ?>
-      <div class="ItemBlockTextAsso">
-        <h2><?php echo $data['nom']; ?></h2>
-        <p><?php echo $data['description']; ?></p>
-        <form action="" method="post" class="form-abonnement">
-          <input type="hidden" value="<?php echo $data['id_users']; ?>" name="id_user_asso">
-          <input type="hidden" value="<?php echo $_SESSION['user']['id_users']; ?>" name="id_user_etudiant">
-          <?php if ($_SESSION['user']['type'] == 'etudiant') { ?>
-          <button class="sub" type="submit">S'abonner</button>
-          <?php } else { ?>
-          <button class="sub" style="display:none;" type="submit">S'abonner</button>
-          <?php } ?>
-        </form>
+    <?php endif; ?>
+    <?php if (isset($error_abonne['reabonne'])) : ?>
+      <div class="generate-error">
+        <p style="background-color: #14AE5C; color: #ffff; padding: 20px;text-align:center;"><?php echo $error_abonne['reabonne']; ?></p>
       </div>
-    </div>
-    <?php } ?>
-  </div>
-  <?php }else{?>
+    <?php endif; ?>
+    <?php if (isset($error_abonne['already_abonne'])) : ?>
+      <div class="generate-error">
+        <p style="background-color: red; color: #ffff; padding: 20px;text-align:center;"><?php echo $error_abonne['already_abonne']; ?></p>
+      </div>
+    <?php endif; ?>
     <div class="containerListAsso">
-    <?php
-    $req = $pdo->query("SELECT * FROM users WHERE type = 'association'");
-    while ($data = $req->fetch()) {
-    ?>
-    <div class="itemListAsso">
-      <div class="itemBlockImgAsso">
-        <?php if (isset($data['profil'])) { ?>
-        <?php echo '<img src="img/folder_profil_user/' . $data['profil'] . '" alt="Icon">'; ?>
-        <?php } else { ?>
-        <img src="img/association.png" alt="Icon">
-        <?php } ?>
-      </div>
-      <?php if (isset($error_abonne['success']) || isset($error_abonne['success1'])) : ?>
-
-      <?php endif; ?>
-      <div class="ItemBlockTextAsso">
-        <h2><?php echo $data['nom']; ?></h2>
-        <p><?php echo $data['description']; ?></p>
-        <form action="" method="post" class="form-abonnement">
-          <input type="hidden" value="<?php echo $data['id_users']; ?>" name="id_user_asso">
-          <input type="hidden" value="<?php echo $_SESSION['user']['id_users']; ?>" name="id_user_etudiant">
-          <?php if ($_SESSION['user']['type'] == 'etudiant') { ?>
-          <button class="sub" type="submit">S'abonner</button>
-          <?php } else { ?>
-          <button class="sub" style="display:none;" type="submit">S'abonner</button>
-          <?php } ?>
-        </form>
-      </div>
+      <?php
+      $req = $pdo->query("SELECT * FROM users WHERE type = 'association'");
+      while ($data = $req->fetch()) {
+      ?>
+        <div class="itemListAsso">
+          <div class="itemBlockImgAsso">
+            <?php if (isset($data['profil'])) { ?>
+              <?php echo '<img src="img/folder_profil_user/' . $data['profil'] . '" alt="Icon">'; ?>
+            <?php } else { ?>
+              <img src="img/association.png" alt="Icon">
+            <?php } ?>
+          </div>
+          <div class="ItemBlockTextAsso">
+            <h2><?php echo $data['nom']; ?></h2>
+            <p><?php echo $data['description']; ?></p>
+            <form action="" method="post" class="form-abonnement">
+              <input type="hidden" value="<?php echo $data['id_users']; ?>" name="id_user_asso">
+              <input type="hidden" value="<?php echo $_SESSION['user']['id_users']; ?>" name="id_user_etudiant">
+              <?php if ($_SESSION['user']['type'] == 'etudiant') { ?>
+                <button class="sub" type="submit">S'abonner</button>
+              <?php } else { ?>
+                <button class="sub" style="display:none;" type="submit">S'abonner</button>
+              <?php } ?>
+            </form>
+          </div>
+        </div>
+      <?php } ?>
     </div>
-    <?php } ?>
-  </div>
-  <?php }?>
+  <?php } else { ?>
+    <div class="containerListAsso">
+      <?php
+      $req = $pdo->query("SELECT * FROM users WHERE type = 'association'");
+      while ($data = $req->fetch()) {
+      ?>
+        <div class="itemListAsso">
+          <div class="itemBlockImgAsso">
+            <?php if (isset($data['profil'])) { ?>
+              <?php echo '<img src="img/folder_profil_user/' . $data['profil'] . '" alt="Icon">'; ?>
+            <?php } else { ?>
+              <img src="img/association.png" alt="Icon">
+            <?php } ?>
+          </div>
+          <?php if (isset($error_abonne['success']) || isset($error_abonne['success1'])) : ?>
+
+          <?php endif; ?>
+          <div class="ItemBlockTextAsso">
+            <h2><?php echo $data['nom']; ?></h2>
+            <p><?php echo $data['description']; ?></p>
+            <form action="" method="post" class="form-abonnement">
+              <input type="hidden" value="<?php echo $data['id_users']; ?>" name="id_user_asso">
+              <input type="hidden" value="<?php echo $_SESSION['user']['id_users']; ?>" name="id_user_etudiant">
+              <?php if ($_SESSION['user']['type'] == 'etudiant') { ?>
+                <button class="sub" type="submit">S'abonner</button>
+              <?php } else { ?>
+                <button class="sub" style="display:none;" type="submit">S'abonner</button>
+              <?php } ?>
+            </form>
+          </div>
+        </div>
+      <?php } ?>
+    </div>
+  <?php } ?>
   <footer>
     <div class="containerFooter">
       <div class="classLogoFooter">
@@ -158,6 +171,8 @@ if ($_POST) {
     </div>
   </footer>
   <script src="Js/scripts.js"></script>
+  <script src="Js/events.js"></script>
+  <script src="Js/chat.js"></script>
 </body>
 
 </html>
