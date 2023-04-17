@@ -1,7 +1,7 @@
 <?php
 include('config.php');
 
-$path = "home.php";
+$path = "Evenements.php";
 
 if(isset($_SESSION['user'])){
   header('location:'.$path);
@@ -65,10 +65,10 @@ if($_POST){
 </head>
 <body>
   <div class="classLogoFormConnexion">
-    <a href="../index.php"><img src="img/logo.svg" alt="Logo HEH"></a>
+    <a href="index.php"><img src="img/logo.svg" alt="Logo HEH"></a>
   </div>
   <div class="classContainerFormConnexion">
-    <p class="classTextWelcomeFormConnexion">Connectez-vous sur votre compte Hetic Events Hub (HEH) pour ne manquer aucun évènements</p>
+    <p class="classTextWelcomeFormConnexion">Connectez-vous sur votre compte Hetic Events Hub (HEH)</p>
     <?php if(isset($errors)){?>
       <?php if(isset($errors['account_exist'])):?>
         <p style="color:red;margin-left:1em;">

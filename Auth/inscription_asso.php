@@ -143,6 +143,7 @@
         <a href="../index.php">Retour</a>
       </div>
       <p>Déjà un compte ? <a href="../index.php">Connectez-vous</a> </p>
+      <p>S'inscrire en tant qu'<a href="inscription_etudiant.php">Etudiant</a> </p>
     </form>
     <?php }else{?>
       <form action="" method="post">
@@ -179,6 +180,7 @@
         <a href="../index.php">Retour</a>
       </div>
       <p>Déjà un compte ? <a href="../index.php">Connectez-vous</a> </p>
+      <p>S'inscrire en tant qu'<a href="inscription_etudiant.php">Etudiant</a> </p>
     </form>
     <?php }?>
     <hr class="classLigneSeparationFormAsso">

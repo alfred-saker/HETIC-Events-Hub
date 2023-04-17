@@ -20,6 +20,7 @@
       <a href="index.php"><img src="img/logo.svg" alt="logo HEH"></a>
     </div>
     <div class="classTextChoix">
+      <h1>TYPES DE COMPTES</h1>
       <p>Veuillez selectionnez le type de compte </p>
     </div>
     <div class="classBlockBtn">
@@ -30,7 +31,7 @@
   <footer>
     <div class="containerFooter">
       <div class="classLogoFooter">
-        <a href="../index.php"><img src="img/logo.svg" alt="Logo HEH"></a>
+        <a href="index.php"><img src="img/logo.svg" alt="Logo HEH"></a>
       </div>
       <div class="classItemsFooter">
         <ul>
@@ -46,7 +47,7 @@
     </div>
   </footer>
   <script src="Js/scripts.js"></script>
-  <script src="Js/events.js"></script>
   <script src="Js/chat.js"></script>
+  <script src="Js/events.js"></script>
 </body>
 </html>

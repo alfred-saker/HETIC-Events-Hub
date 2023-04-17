@@ -133,7 +133,7 @@ header .burger {
 }
 
 .itemBlockImgAsso {
-  border: 1px solid rgb(247, 245, 245);
+  border: 1.5px solid rgb(53, 53, 53);
   border-radius: 10px;
   padding: 1em;
   text-align: center;
@@ -491,7 +491,7 @@ input[type="checkbox"] {
 
 .classContainerFormConnexion {
   margin: 0 auto;
-  width: 50%;
+  width: 40%;
 }
 
 .itemConnexionform {
@@ -526,6 +526,7 @@ input[type="email"], input[type="password"] {
   background-color: var(--color-first);
   border-radius: 5px;
   color: var(--color-background);
+  border: 1px solid #14AE5C;
 }
 
 .itembtnsubmitConnexionform button:hover {
@@ -688,8 +689,10 @@ input[type="email"], input[type="password"] {
 /* Page Profil */
 .classContainerDisplayProfil {
   display: flex;
+  width: 80%;
+  margin: 0 auto;
   justify-content: center;
-  padding: 1em;
+  margin: 0 auto;
 }
 
 .classTitleWelcome {
@@ -722,12 +725,13 @@ input[type="email"], input[type="password"] {
 
 .classAvatarProfil {
   text-align: center;
-  margin-left: 3em;
+  align-self: center;
   width: 100%;
   margin: 0 auto;
 }
 
 .classAvatarProfil img {
+  border-radius : 75px;
   width: 50%;
 }
 
@@ -838,6 +842,7 @@ input[type="file"]::-moz-file-upload-button {
   color: var(--color-background);
   background-color: #14AE5C;
 }
+
 
 /* Page Homepage */
 
@@ -1684,6 +1689,48 @@ form .space_image {
 .nbre_comment p:hover{
   text-decoration: underline;
 }
+.classLogoIndex{
+  width: 12%;
+  margin: 3em ;
+}
+
+.classLogoIndex img{
+  width: 100%;
+}
+
+.classTextChoix{
+  width: 30%;
+  margin: 2em auto;
+  text-align: center;
+  
+}
+
+.classTextChoix h1{
+  font-size: large;
+  font-weight: 700;
+  
+}
+.classTextChoix h1{
+  font-size: large;
+  font-weight: 700;
+}
+
+.classBlockBtn{
+  padding: 3em;
+  width: 30%;
+  display: flex ;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.classBlockBtn a{
+  text-decoration: none;
+  padding: 1.5em;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
 
 
 
@@ -1766,7 +1813,7 @@ form .space_image {
 
   /* Mobile Index */
   .classLogoIndex img {
-    width: 40%;
+    width: 30%;
   }
 
   /* Mobile Inscription Association */
@@ -1778,7 +1825,6 @@ form .space_image {
   .classLogoFormAsso img {
     width: 75%;
   }
-
   .itembtnsubmitAssoform button, a {
     width: auto;
   }
@@ -1787,16 +1833,18 @@ form .space_image {
   .classLogoFormEtu img {
     width: 75%;
   }
+  .itemEtuform {
+    width: 100%;
+  }
 
   .itembtnsubmitEtuform button, a {
     width: auto;
   }
-
   /* mobile connexion */
   .classLogoFormConnexion {
     text-align: center;
-    background-color: aqua;
-    width: 100%;
+    margin: 0 auto;
+    width: 50%;
   }
 
   .classLogoFormConnexion img {
@@ -1804,16 +1852,12 @@ form .space_image {
   }
 
   .itembtnsubmitConnexionform button {
-    width: 100%;
-  }
-
-  .classContainerFormConnexion {
-    background-color: blue;
+    width: auto;
   }
 
   .itemConnexionform {
     padding: 1em;
-    width: 50%;
+    width: 100%;
   }
 
   input[type="email"], input[type="password"] {
@@ -1823,6 +1867,7 @@ form .space_image {
     padding: 1em;
     border-radius: 5px;
   }
+  
 
   /*Mobile Creat_event*/
   section .space-img {

@@ -179,7 +179,8 @@
           <button type="submit">S'inscrire</button>
           <a href="../index.php">Retour</a>
         </div>
-        <p>Déjà un compte ? <a href="connexion.php">Connectez-vous</a> </p>
+        <p>Déjà un compte ? <a href="../index.php">Connectez-vous</a> </p>
+        <p>S'inscrire en tant qu'<a href="inscription_asso.php">Association</a> </p>
       </form>
     <?php }else{?>
       <form action="" method="post">
@@ -237,7 +238,8 @@
           <button type="submit">S'inscrire</button>
           <a href="../index.php">Retour</a>
         </div>
-        <p>Déjà un compte ? <a href="connexion.php">Connectez-vous</a> </p>
+        <p>Déjà un compte ? <a href="../index.php">Connectez-vous</a> </p>
+        <p>S'inscrire en tant qu'<a href="inscription_asso.php">Association</a> </p>
       </form>
       <?php }?>
 

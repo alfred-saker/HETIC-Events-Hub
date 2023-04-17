@@ -65,7 +65,7 @@ if (isset($_POST['btn-comment'])) {
 <body>
   <header>
     <img src="img/menu.png" alt="Menu burger" class="burger">
-    <a class="logo" href="home.php"><img src="img/logo1.svg" alt=""></a>
+    <a class="logo" href="Evenements.php"><img src="img/logo1.svg" alt=""></a>
     <nav>
       <ul class="links">
         <li><a href="Evenements.php">Evenements</a></li>

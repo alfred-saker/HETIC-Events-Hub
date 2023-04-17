@@ -72,7 +72,7 @@ if ($_POST) {
 
 <body>
   <div class="heh">
-    <a href="home.php"><img src="img/HEH HETIC EVENTS HUB.png" alt=""></a>
+    <a href="Evenements.php"><img src="img/HEH HETIC EVENTS HUB.png" alt=""></a>
   </div>
   <div class="titre">
     <h1>RECAPITULATIF D'EVENEMENT</h1>
